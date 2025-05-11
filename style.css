@@ -16,6 +16,7 @@
        - Home Page (Hero Section, Typewriter)
        - Contact Page (#contact-form-section, #contactForm, .contact-info-item, #discord-section)
        - About Page (#about-content, .about-subsection)
+       - AscentCustoms WIP Page (#ascent-wip-page) <--- NEW SECTION
        - Reviews Page (Placeholder for future specific styles)
    6.  Animations (@keyframes)
    7.  Responsive Styles (@media queries)
@@ -31,7 +32,7 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-color: #000000; /* Black background */
   color: #e0e0e0; /* Light grey text color */
-  overflow-x: hidden; /* Prevent horizontal scrollbars */
+  overflow-x: hidden; /* Prevent horizontal scrollbars on body */
 }
 
 /* ==========================================================================
@@ -172,7 +173,7 @@ footer {
   background-color: #1a1a1a;
   color: #999999;
   font-size: 0.9rem;
-  margin-top: 3rem;
+  margin-top: 3rem; /* Default margin, will be overridden for WIP page */
 }
 
 .social-links {
@@ -349,7 +350,6 @@ footer {
 
 .hero .cta-button { /* Specific CTA adjustments for hero if needed */
   background-image: linear-gradient(to right, #007bff, #0056b3); /* Ensure it's not overridden by other .hero .cta-button styles if any */
-  /* margin-top: 1.5rem; /* Already in .cta-button */
 }
 
 /* Contact Page
@@ -584,6 +584,133 @@ footer {
   /* Inherits from .content-section p by default */
 }
 
+/* AscentCustoms WIP Page
+   -------------------------------------------------------------------------- */
+#ascent-wip-page { /* Main container for the WIP page content */
+  height: calc(100vh - 100px); /* Adjust 100px based on your actual header height, if footer is fixed add its height too */
+  /* If header is not fixed, you might need a different approach or JS to calculate height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative; /* For z-index context and backdrop positioning */
+  overflow: hidden; /* Prevent scrollbars within this section */
+  padding: 0; /* Override any .content-section padding */
+  margin: 0; /* Override any .content-section margin */
+  max-width: none; /* Override .content-section max-width */
+  background-color: #000000; /* Ensure black background behind backdrop */
+  border-top: none; /* Override .content-section border */
+  animation: none; /* Override .content-section animation */
+}
+
+/* Remove site footer margin for this specific page if it's full screen */
+body:has(#ascent-wip-page) footer {
+  margin-top: 0;
+}
+
+
+.ascent-backdrop {
+  position: absolute; /* Changed from fixed to be relative to #ascent-wip-page */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind content */
+  background-image: url('https://media.tenor.com/APB12vyfxVUAAAAM/fractal-universe.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: lighten;
+  opacity: 0.15;
+}
+
+.ascent-container {
+  position: relative;
+  z-index: 1; /* Above backdrop */
+  padding: 30px;
+  max-width: 700px;
+  background-color: rgba(10, 10, 10, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #E0E0E0; /* Default text color for this container */
+}
+
+.ascent-container h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.ascent-subtitle {
+  font-size: 1.3rem;
+  font-weight: 100; /* Very light weight */
+  color: #CCCCCC;
+  margin-top: -15px; /* Closer to h1 */
+  margin-bottom: 30px;
+}
+
+.ascent-details {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  color: #B0B0B0;
+  max-width: 550px;
+}
+
+.ascent-details p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.ascent-details strong {
+  font-weight: 400; /* Regular weight for emphasis */
+  color: #D0D0D0;
+}
+
+.ascent-page-footer { /* Specific to the content within ascent-container */
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #757575;
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ascent-copyright-text {
+  margin-bottom: 0; /* Remove default margin if button is below */
+}
+
+.ascent-footer-button {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-top: 15px;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  color: #AAAAAA;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.ascent-footer-button:hover,
+.ascent-footer-button:focus {
+  background-color: #333333;
+  color: #FFFFFF;
+  border-color: #777777;
+  outline: none;
+}
+
 
 /* Reviews Page
    -------------------------------------------------------------------------- */
@@ -706,6 +833,30 @@ footer {
   .discord-tag {
     font-size: 1.1rem;
   }
+
+  /* AscentCustoms WIP Page */
+  .ascent-container h1 {
+    font-size: 2.2rem;
+  }
+  .ascent-subtitle {
+    font-size: 1.1rem;
+  }
+  .ascent-details {
+    font-size: 1rem;
+  }
+  .ascent-container {
+    padding: 25px;
+    margin: 20px; /* Add some margin so it doesn't touch screen edges */
+    max-width: calc(100% - 40px); /* Ensure padding/margin respected */
+  }
+  .ascent-footer-button {
+    padding: 7px 15px;
+    font-size: 0.8rem;
+  }
+  #ascent-wip-page {
+     height: calc(100vh - 80px); /* Adjust for potentially taller mobile header */
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -725,5 +876,22 @@ footer {
   .content-section .section-title-wrapper h2,
   #discord-section .section-title-wrapper h2 {
     font-size: 1.8rem;
+  }
+
+  /* AscentCustoms WIP Page */
+  .ascent-container h1 {
+    font-size: 1.8rem;
+  }
+  .ascent-subtitle {
+    font-size: 1rem;
+  }
+  .ascent-details {
+    font-size: 0.9rem;
+  }
+  .ascent-page-footer {
+    margin-top: 30px;
+  }
+  #ascent-wip-page {
+     height: calc(100vh - 70px); /* Further adjustment for mobile header */
   }
 }
