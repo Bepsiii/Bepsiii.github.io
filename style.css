@@ -727,3 +727,51 @@ footer {
     font-size: 1.8rem;
   }
 }
+/* ==========================================================================
+   8. Slideshow Background for Hero Section
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden; /* Optional: Prevents content from spilling out */
+  /* ... your existing hero styles ... */
+}
+
+.slideshow-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Behind the text content */
+}
+
+.slideshow-background .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, might crop */
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Fade transition */
+}
+
+.slideshow-background .slide.active {
+  opacity: 1;
+}
+
+.hero-text-content {
+  position: relative; /* To allow z-index stacking */
+  z-index: 2; /* Ensures it's above the slideshow */
+  /* Add other styles for text alignment, padding, potential background, etc. */
+  /* For example, to center it and add a semi-transparent background:
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Optional: dark overlay for text readability */
+  /* padding: 2rem; */
+  /* border-radius: 8px; */
+  /* height: 100%; /* If you want it to also take full height */
+}
