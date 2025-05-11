@@ -877,21 +877,15 @@ body:has(#ascent-wip-page) footer {
   #discord-section .section-title-wrapper h2 {
     font-size: 1.8rem;
   }
-
-  /* AscentCustoms WIP Page */
-  .ascent-container h1 {
-    font-size: 1.8rem;
+  .content-section p {
+    font-size: 0.95rem;
   }
-  .ascent-subtitle {
-    font-size: 1rem;
-  }
-  .ascent-details {
-    font-size: 0.9rem;
-  }
-  .ascent-page-footer {
-    margin-top: 30px;
-  }
-  #ascent-wip-page {
-     height: calc(100vh - 70px); /* Further adjustment for mobile header */
+  .content-section .section-title-wrapper h2,
+  #discord-section .section-title-wrapper h2 {
+    font-size: 1.6rem;
   }
 }
+
+/* ==========================================================================
+   End of CSS
+   ========================================================================== */
