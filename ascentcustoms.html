@@ -3,176 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ascentcustoms - Work In Progress</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #000000; /* Pure black background */
-            color: #E0E0E0; /* Off-white for primary text, good for monochrome */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Behind content, but above solid body background if needed */
-            background-image: url('https://media.tenor.com/APB12vyfxVUAAAAM/fractal-universe.gif');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            mix-blend-mode: lighten; /* 'lighten' or 'screen' often work well for these types of GIFs on black */
-            opacity: 0.15; /* Adjusted for a more subtle, integrated look with the fractal GIF */
-        }
-
-        .container {
-            position: relative; /* For z-index stacking context */
-            z-index: 1; /* Ensures content is above the backdrop */
-            padding: 30px;
-            max-width: 700px;
-            background-color: rgba(10, 10, 10, 0.3); /* Very subtle, dark translucent panel for text readability */
-            border-radius: 8px; /* Slightly rounded corners for modern feel */
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.05); /* Faint glow effect */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center content within the container */
-        }
-
-        h1 {
-            font-size: 2.8rem; /* Slightly adjusted */
-            font-weight: 700; /* Bold for the main title */
-            color: #FFFFFF; /* Pure white for main heading for contrast */
-            margin-bottom: 25px;
-            letter-spacing: 1px; /* Added letter spacing for a more refined look */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle white glow */
-        }
-
-        .subtitle { /* Style for the "[ WORK IN PROGRESS ]" text */
-            font-size: 1.3rem;
-            font-weight: 100;
-            color: #CCCCCC;
-            margin-top: -15px; /* Adjust to bring it closer to h1 */
-            margin-bottom: 30px;
-        }
-
-        .details {
-            font-size: 1.1rem; /* Adjusted for readability */
-            font-weight: 300; /* Light weight for detail text */
-            line-height: 1.7;
-            margin-bottom: 35px;
-            color: #B0B0B0; /* Lighter grey for details */
-            max-width: 550px; /* Constrain width of details for better readability */
-        }
-
-        .details p {
-            margin-bottom: 12px;
-        }
-
-        .details strong {
-            font-weight: 400; /* Regular weight for emphasis */
-            color: #D0D0D0; /* Slightly brighter for emphasized text */
-        }
-
-        .footer {
-            font-size: 0.8rem;
-            font-weight: 300; /* Light weight for footer */
-            color: #757575; /* Darker grey for less emphasis */
-            margin-top: 40px; /* More space before footer */
-            width: 100%; /* Ensure footer takes full width of container for alignment */
-            display: flex;
-            flex-direction: column; /* Stack copyright and button vertically */
-            align-items: center; /* Center items in the footer */
-        }
-
-        .footer-button {
-            display: inline-block;
-            padding: 8px 18px; /* Adjusted padding for a sleeker button */
-            margin-top: 15px; /* Space between copyright and button */
-            border: 1px solid #555555; /* Subtler border color */
-            border-radius: 5px; /* Slightly less rounded for a sharper look */
-            color: #AAAAAA; /* Grey text color for the button */
-            text-decoration: none;
-            font-weight: 400; /* Regular weight for button text */
-            font-size: 0.85rem;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .footer-button:hover,
-        .footer-button:focus {
-            background-color: #333333; /* Darker grey on hover */
-            color: #FFFFFF; /* White text on hover */
-            border-color: #777777; /* Slightly lighter border on hover */
-            outline: none; /* Remove focus outline if not desired, or style it */
-        }
-
-        .copyright-text {
-            margin-bottom: 0; /* Remove default margin if button is below */
-        }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            .details {
-                font-size: 1rem;
-            }
-            .container {
-                padding: 25px; /* Slightly more padding for container on mobile */
-                margin: 20px;
-            }
-            .footer-button {
-                padding: 7px 15px;
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            .subtitle {
-                font-size: 1rem;
-            }
-            .details {
-                font-size: 0.9rem;
-            }
-            .footer {
-                margin-top: 30px;
-            }
-        }
-    </style>
+    <title>AscentCustoms - Work In Progress | Bepsi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
-    <div class="backdrop"></div>
-    <div class="container">
-        <h1>ASCENTCUSTOMS</h1>
-        <p class="subtitle">[ WORK IN PROGRESS ]</p>
-        <div class="details">
-            <p>We are currently crafting a new digital experience.</p>
-            <p><strong>ascentcustoms.</strong> Crafting the next generation of 3D Printed Mice.</p>
-            <p>This page is being built. Stay tuned.</p>
-        </div>
-        <div class="footer">
-            <p class="copyright-text">ascentcustoms &copy; all rights reserved 2025</p>
-            <a href="https://x.com/ascentcustoms" target="_blank" rel="noopener noreferrer" class="footer-button">
-                Follow Updates on X
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Bepsi Logo" onerror="this.alt='Bepsi'; this.src='https://i.imgur.com/SPIEgke.png';">
             </a>
         </div>
-    </div>
+        <nav>
+            <ul>
+                <li><a href="#">My Projects</a>
+                    <ul>
+                        <li><a href="ascentcustoms.html">AscentCustoms</a></li>
+                        <li><a href="moonlight.html">Moonlight (Note App)</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">My Stuff</a>
+                    <ul>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="setup.html">My Setup</a></li>
+                        <li><a href="articles.html">Articles</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Resources</a>
+                    <ul>
+                        <li><a href="resources1.html">Spreadsheets</a></li>
+                        <li><a href="contact.html">Contact Me</a></li>
+                        <li><a href="about.html">About Me</a></li>
+                    </ul>
+                </li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="ascent-wip-page">
+        <div class="ascent-backdrop"></div>
+        <div class="ascent-container">
+            <h1>ASCENTCUSTOMS</h1>
+            <p class="ascent-subtitle">[ WORK IN PROGRESS ]</p>
+            <div class="ascent-details">
+                <p>We are currently crafting a new digital experience.</p>
+                <p><strong>ascentcustoms.</strong> Crafting the next generation of 3D Printed Mice.</p>
+                <p>This page is being built. Stay tuned.</p>
+            </div>
+            <div class="ascent-page-footer">
+                <p class="ascent-copyright-text">Kane Philips / ascentcustoms &copy; <span class="dynamic-year">2025</span></p>
+                <a href="https://x.com/ascentcustoms" target="_blank" rel="noopener noreferrer" class="ascent-footer-button">
+                    Follow Updates on X
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Bepsi. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://x.com/Bepsi_Bottle" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://www.instagram.com/bepsiii_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Small script to update the dynamic year in the ascent-page-footer
+        const ascentYearElements = document.querySelectorAll('.dynamic-year');
+        if (ascentYearElements) {
+            ascentYearElements.forEach(el => {
+                el.textContent = new Date().getFullYear();
+            });
+        }
+    </script>
 </body>
 </html>
