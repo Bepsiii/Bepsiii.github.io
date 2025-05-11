@@ -270,13 +270,17 @@ footer {
 /* Home Page (Hero Section)
    -------------------------------------------------------------------------- */
 .hero {
-  display: flex; /* For centering .hero-main-content */
-  align-items: center; /* Vertically centers .hero-main-content */
-  justify-content: center; /* Horizontally centers .hero-main-content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 80vh;
   position: relative;
   padding: 2rem; /* Padding for the hero section itself */
   background-color: #0d0d0d; /* Fallback background color */
+  background-size: cover;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
   overflow: hidden; /* Ensures pseudo-element doesn't cause scrollbars */
   animation: fadeInHero 1.5s ease-in-out;
 }
@@ -289,32 +293,20 @@ footer {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4); /* Adjust tint as needed */
-  z-index: 1; /* Above slideshow (z-index: 0), below content (z-index: 2) */
+  z-index: 1;
 }
 
-.hero-main-content { /* Was previously .hero > div */
-  position: relative;
-  z-index: 2; /* Above the tint */
-  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background for content box */
-  padding: 20px 30px; /* Space inside the content box */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  text-align: center;
-  max-width: 650px; /* Constrain width of the content box */
-}
-
-.hero-main-content h1 {
+.hero h1 { /* Main hero title */
   font-size: 2.8rem;
   margin-top: 0;
-  margin-bottom: 0.75em; /* Space below H1, relative to font-size */
+  margin-bottom: 0.5rem; /* Space below H1 */
   color: #ffffff;
   font-weight: 700;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 12px rgba(0, 204, 255, 0.2);
 }
 
-.hero-main-content .hero-title-static,
-.hero-main-content .typewriter-container {
+.hero .hero-title-static,
+.hero .typewriter-container {
   display: inline; /* Keep "Hi, I'm" and "Bepsi" on the same line if possible */
 }
 
@@ -328,18 +320,19 @@ footer {
   display: inline-block;
   vertical-align: bottom;
   font-weight: 700;
-  /* margin-bottom removed, h1 margin-bottom controls spacing after */
+  margin-bottom: 0.5rem; /* Consistent with H1 margin */
 }
 
-.hero-main-content .subtitle { /* HTML uses class="subtitle" */
+.hero p.subtitle {
   font-size: 1.4rem;
   color: #b0b0b0;
-  margin-top: 0; /* Reset default top margin */
-  margin-bottom: 1.5em; /* Space below subtitle, before CTA, relative to font-size */
+  margin-top: 0.5rem; /* Space above subtitle */
+  margin-bottom: 1.5rem; /* Space below subtitle, before CTA */
+  max-width: 600px; /* Match content box width */
   font-weight: 300;
 }
 
-.hero-main-content .cta-button { /* Specific CTA adjustments for hero if needed */
+.hero .cta-button { /* Specific CTA adjustments for hero if needed */
   background-image: linear-gradient(to right, #007bff, #0056b3); /* Ensure it's not overridden by other .hero .cta-button styles if any */
   /* margin-top: 1.5rem; /* Already in .cta-button */
 }
@@ -642,8 +635,8 @@ footer {
   .hero p.subtitle {
     font-size: 1.1rem; /* Smaller subtitle for mobile */
   }
-  .hero > div { /* Hero content box */
-    padding: 15px 20px;
+  .hero-text-content { /* Hero content box - responsive padding */
+    padding: 15px 20px; /* Adjusted from .hero > div */
   }
 
   /* Call to Action Button */
@@ -722,18 +715,22 @@ footer {
 /* ==========================================================================
    8. Slideshow Background for Hero Section
    ========================================================================== */
-/* .hero styles (position: relative, overflow: hidden) are already defined in section 5 */
+.hero {
+  position: relative;
+  overflow: hidden; /* Optional: Prevents content from spilling out */
+  /* ... your existing hero styles ... */
+}
 
-.hero-slideshow-background { /* Updated selector */
+.slideshow-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Behind the tint overlay and text content */
+  z-index: 1; /* Behind the text content */
 }
 
-.hero-slideshow-background .hero-slide { /* Updated selector */
+.slideshow-background .slide {
   position: absolute;
   top: 0;
   left: 0;
@@ -742,10 +739,30 @@ footer {
   object-fit: cover; /* Cover the area, might crop */
   opacity: 0;
   transition: opacity 1s ease-in-out; /* Fade transition */
-  background-color: #0d0d0d; /* Fallback for broken image links */
 }
 
-.hero-slideshow-background .hero-slide.active { /* Updated selector */
+.slideshow-background .slide.active {
   opacity: 1;
 }
-/* .hero-main-content (previously .hero-text-content or .hero > div) is styled in section 5 */
+
+.hero-text-content {
+  position: relative; /* To allow z-index stacking */
+  z-index: 2; /* Ensures it's above the slideshow */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  padding: 20px 30px; /* Space inside the content box */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  max-width: 600px; /* Constrain width of the content box */
+  margin-left: auto; /* For centering if not a flex item or if max-width is hit */
+  margin-right: auto;
+
+  /* Flex properties for internal content alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%; /* Ensure it can take up to max-width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
