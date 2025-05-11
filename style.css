@@ -1,0 +1,729 @@
+/* ==========================================================================
+   Table of Contents
+   ==========================================================================
+
+   1.  Reset & Base Styles (body)
+   2.  Global Elements & Components
+       - Links (general, .inline-link)
+       - Buttons (.cta-button)
+   3.  Layout Components
+       - Header & Navigation
+       - Footer & Social Links
+   4.  Page Structure & Common Sections
+       - Generic Page Header (.page-header)
+       - Generic Content Section (.content-section, .section-title-wrapper)
+   5.  Page-Specific Styles
+       - Home Page (Hero Section, Typewriter)
+       - Contact Page (#contact-form-section, #contactForm, .contact-info-item, #discord-section)
+       - About Page (#about-content, .about-subsection)
+       - Reviews Page (Placeholder for future specific styles)
+   6.  Animations (@keyframes)
+   7.  Responsive Styles (@media queries)
+
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Reset & Base Styles
+   ========================================================================== */
+
+body {
+  margin: 0;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  background-color: #000000; /* Black background */
+  color: #e0e0e0; /* Light grey text color */
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+/* ==========================================================================
+   2. Global Elements & Components
+   ========================================================================== */
+
+/* Links
+   -------------------------------------------------------------------------- */
+.inline-link { /* Used on About Page, can be a global style */
+  color: #00aeff; /* A bright, clear link color */
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dotted #00aeff; /* Subtle underline */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.inline-link:hover,
+.inline-link:focus {
+  color: #33c6ff; /* Lighter color on hover/focus */
+  border-bottom-color: #33c6ff;
+  text-decoration: none; /* Ensure no default underline appears on hover */
+}
+
+/* Buttons
+   -------------------------------------------------------------------------- */
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  margin-top: 1.5rem;
+  background-image: linear-gradient(to right, #007bff, #0056b3); /* Primary blue gradient */
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-image 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3), 0 2px 5px rgba(0, 123, 255, 0.2);
+  border: none; /* Ensure no default border */
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4), 0 3px 7px rgba(0, 123, 255, 0.3);
+  background-image: linear-gradient(to right, #0069d9, #004085); /* Darker blue on hover */
+}
+
+/* ==========================================================================
+   3. Layout Components
+   ========================================================================== */
+
+/* Header & Navigation
+   -------------------------------------------------------------------------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a1a1a; /* Dark grey for header */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.2); /* Modernized header shadow */
+}
+
+.logo a {
+  display: inline-block; /* Ensure the link wrapper for the logo behaves well */
+}
+
+.logo img {
+  height: 40px;
+  width: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below image */
+  vertical-align: middle; /* Better alignment if link has text */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem; /* Spacing between main nav items */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  position: relative; /* For positioning dropdowns */
+}
+
+nav a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-weight: 500;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.5rem 0; /* Add some padding for easier clicking on main nav items */
+}
+
+nav ul > li > a:hover { /* Main navigation item hover */
+  color: #ffffff;
+}
+
+/* Dropdown Menu */
+nav ul li ul {
+  display: none;
+  position: absolute;
+  background-image: linear-gradient(to bottom, #303030, #2a2a2a); /* Subtle dark gradient */
+  top: 100%;
+  left: 0;
+  padding: 0.5rem 0;
+  min-width: 190px;
+  z-index: 1000; /* Ensure dropdown is above other content */
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.3);
+  border: 1px solid #383838;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  padding: 0; /* Reset padding if any inherited */
+}
+
+nav ul li ul li a {
+  padding: 0.7rem 1.3rem;
+  display: block;
+  white-space: nowrap;
+  color: #d0d0d0;
+}
+
+nav ul li ul li a:hover { /* Dropdown item hover */
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Footer & Social Links
+   -------------------------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background-color: #1a1a1a;
+  color: #999999;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-links a { /* Reuses .cta-button like styling but smaller */
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-image: linear-gradient(to right, #007bff, #0056b3);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-image 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.25), 0 1px 4px rgba(0, 123, 255, 0.15);
+}
+
+.social-links a:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 5px 12px rgba(0, 123, 255, 0.35), 0 2px 6px rgba(0, 123, 255, 0.25);
+  background-image: linear-gradient(to right, #0069d9, #004085);
+}
+
+/* ==========================================================================
+   4. Page Structure & Common Sections
+   ========================================================================== */
+
+/* Generic Page Header (Used on About, Contact, Reviews pages)
+   -------------------------------------------------------------------------- */
+.page-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem 1rem;
+  background-color: #101010;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 2rem; /* Space before main content section */
+}
+
+.page-header h1 {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-top: 0; /* Remove default top margin */
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Generic Content Section (Used on About, Contact, Reviews pages)
+   -------------------------------------------------------------------------- */
+.content-section {
+  padding: 3rem 2rem;
+  max-width: 900px; /* Default max-width */
+  margin: 3rem auto;
+  animation: fadeInSection 1s ease-out forwards;
+  background-color: #121212;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.25);
+  border-top: 3px solid #007bff; /* Blue accent top border */
+}
+
+.section-title-wrapper { /* Wrapper for h2 to center it */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.content-section .section-title-wrapper h2, /* Standard h2 within content sections */
+#discord-section .section-title-wrapper h2 { /* Ensure Discord section h2 also follows this if wrapped */
+  font-size: 2.4rem;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 1rem; /* Original margin-bottom of h2, now controlled by wrapper */
+  padding-bottom: 0.5rem; /* Padding for space below underline */
+  font-weight: 700;
+  border-bottom: 2px solid #007bff; /* Blue accent underline */
+  display: inline-block; /* To make underline only as wide as text */
+}
+
+.content-section p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #c0c0c0;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   5. Page-Specific Styles
+   ========================================================================== */
+
+/* Home Page (Hero Section)
+   -------------------------------------------------------------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  position: relative;
+  text-align: center;
+  padding: 2rem; /* Padding for the hero section itself */
+  background-color: #0d0d0d; /* Fallback background color */
+  background-size: cover;
+  background-position: center center;
+  transition: background-image 1s ease-in-out;
+  overflow: hidden; /* Ensures pseudo-element doesn't cause scrollbars */
+  animation: fadeInHero 1.5s ease-in-out;
+}
+
+.hero::before { /* Tint overlay for background image */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Adjust tint as needed */
+  z-index: 1;
+}
+
+.hero > div { /* Container for hero text content */
+  position: relative;
+  z-index: 2; /* Above the tint */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background for content box */
+  padding: 20px 30px; /* Space inside the content box */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  max-width: 600px; /* Constrain width of the content box */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero h1 { /* Main hero title */
+  font-size: 2.8rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem; /* Space below H1 */
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 12px rgba(0, 204, 255, 0.2);
+}
+
+.hero .hero-title-static,
+.hero .typewriter-container {
+  display: inline; /* Keep "Hi, I'm" and "Bepsi" on the same line if possible */
+}
+
+.typewriter-container {
+  border-right: .15em solid #00ccff; /* Caret for typewriter */
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.0s steps(25, end) forwards, blink-caret .75s step-end infinite;
+  font-size: 2.8rem; /* Match hero h1 */
+  color: #ffffff;
+  display: inline-block;
+  vertical-align: bottom;
+  font-weight: 700;
+  margin-bottom: 0.5rem; /* Consistent with H1 margin */
+}
+
+.hero p.subtitle {
+  font-size: 1.4rem;
+  color: #b0b0b0;
+  margin-top: 0.5rem; /* Space above subtitle */
+  margin-bottom: 1.5rem; /* Space below subtitle, before CTA */
+  max-width: 600px; /* Match content box width */
+  font-weight: 300;
+}
+
+.hero .cta-button { /* Specific CTA adjustments for hero if needed */
+  background-image: linear-gradient(to right, #007bff, #0056b3); /* Ensure it's not overridden by other .hero .cta-button styles if any */
+  /* margin-top: 1.5rem; /* Already in .cta-button */
+}
+
+/* Contact Page
+   -------------------------------------------------------------------------- */
+#contact-form-section { /* Specific content section for contact form */
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#contact-form-section .section-title-wrapper,
+#contact-form-section > p:first-of-type { /* Target the direct intro paragraph */
+  text-align: center;
+}
+
+/* Email Display on Contact Page */
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: 2rem; /* Space before the form */
+  text-align: center;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: #00bfff; /* Accent color */
+}
+
+.contact-link {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  color: #00aeff;
+  text-decoration: underline;
+}
+
+/* Contact Form */
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem; /* Space after intro paragraph/email */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Labels and inputs align left */
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  padding: 0.9rem 1rem;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit-button { /* Extends .cta-button */
+  width: auto;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  align-self: center; /* Center the button */
+}
+
+/* Form Status Messages */
+.form-status-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.form-status-message.success {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.form-status-message.error {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+/* Discord Section on Contact Page */
+#discord-section { /* This is a .content-section */
+  text-align: center;
+  padding-top: 2rem; /* Additional spacing if needed */
+  padding-bottom: 3rem;
+}
+
+#discord-section > p { /* Intro paragraph for Discord section */
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #c0c0c0;
+}
+
+.discord-tag-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  border: 1px solid #333;
+  max-width: 450px;
+  margin: 0 auto 1rem auto; /* Added bottom margin */
+}
+
+.discord-icon {
+  font-size: 2.5rem;
+  color: #5865F2; /* Discord brand color */
+}
+
+.discord-tag {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  background-color: #2a2a2a;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.discord-copy-button { /* Extends .cta-button */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.discord-copy-button .fa-copy,
+.discord-copy-button .fa-check {
+  font-size: 1em; /* Relative to button text */
+}
+
+.copy-status-message { /* For Discord tag copy feedback */
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  min-height: 2.5em; /* Prevent layout shift */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+.copy-status-message.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.copy-status-message.success { /* Different from form status for potential distinction */
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #34c759;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.copy-status-message.error {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #ff453a;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* About Page
+   -------------------------------------------------------------------------- */
+#about-content { /* Specific content section for about page */
+  /* Uses .content-section base styles */
+}
+
+.about-subsection {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-subsection h3 {
+  font-size: 1.8rem;
+  color: #00bfff; /* Accent color */
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333; /* Subtle underline */
+  font-weight: 600;
+}
+
+#about-content p { /* Paragraphs specifically within about content, if needing override */
+  /* Inherits from .content-section p by default */
+}
+
+
+/* Reviews Page
+   -------------------------------------------------------------------------- */
+/* Placeholder for any specific styles for the reviews page beyond .content-section */
+/* .review-item { ... } */
+
+
+/* ==========================================================================
+   6. Animations (@keyframes)
+   ========================================================================== */
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00ccff; } /* Caret color */
+}
+
+@keyframes fadeInSection {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   7. Responsive Styles (@media queries)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Header & Navigation */
+  header {
+    flex-direction: column; /* Stack logo and nav on small screens */
+    padding: 1rem;
+  }
+  nav ul {
+    flex-direction: column; /* Stack nav items */
+    align-items: center; /* Center nav items */
+    gap: 0.5rem; /* Reduce gap */
+    margin-top: 1rem; /* Space between logo and nav */
+  }
+  nav ul li ul { /* Ensure dropdowns still work correctly */
+    left: 50%;
+    transform: translateX(-50%); /* Center dropdown below parent */
+    min-width: 150px;
+  }
+  nav a,
+  nav ul li ul li a {
+    padding: 0.5rem 1rem; /* Adjust padding for touch targets */
+  }
+
+
+  /* Hero Section */
+  .hero h1,
+  .typewriter-container {
+    font-size: 2.2rem; /* Smaller font size for mobile */
+  }
+  .hero p.subtitle {
+    font-size: 1.1rem; /* Smaller subtitle for mobile */
+  }
+  .hero > div { /* Hero content box */
+    padding: 15px 20px;
+  }
+
+  /* Call to Action Button */
+  .cta-button,
+  .social-links a,
+  .form-submit-button,
+  .discord-copy-button {
+    padding: 0.7rem 1.5rem; /* Adjust button padding for mobile */
+    font-size: 1rem; /* Smaller button text */
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: 2rem 1rem; /* Less padding on smaller screens */
+    margin: 2rem auto;
+  }
+  .content-section .section-title-wrapper h2,
+  #discord-section .section-title-wrapper h2 {
+    font-size: 2rem;
+  }
+  .content-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Page Specific Headers */
+  .page-header h1 {
+    font-size: 2.2rem;
+  }
+
+  /* Contact Form */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  /* About Page */
+  .about-subsection h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Discord Section */
+  .discord-tag-container {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .discord-icon {
+    font-size: 2rem;
+  }
+  .discord-tag {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .hero h1,
+  .typewriter-container {
+    font-size: 1.8rem;
+  }
+  .hero p.subtitle {
+    font-size: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .content-section .section-title-wrapper h2,
+  #discord-section .section-title-wrapper h2 {
+    font-size: 1.8rem;
+  }
+}
