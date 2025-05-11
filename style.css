@@ -276,6 +276,7 @@ footer {
   align-items: center;
   min-height: 80vh;
   position: relative;
+  text-align: center;
   padding: 2rem; /* Padding for the hero section itself */
   background-color: #0d0d0d; /* Fallback background color */
   background-size: cover;
@@ -294,6 +295,20 @@ footer {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4); /* Adjust tint as needed */
   z-index: 1;
+}
+
+.hero > div { /* Container for hero text content */
+  position: relative;
+  z-index: 2; /* Above the tint */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background for content box */
+  padding: 20px 30px; /* Space inside the content box */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-align: center;
+  max-width: 600px; /* Constrain width of the content box */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero h1 { /* Main hero title */
@@ -635,8 +650,8 @@ footer {
   .hero p.subtitle {
     font-size: 1.1rem; /* Smaller subtitle for mobile */
   }
-  .hero-text-content { /* Hero content box - responsive padding */
-    padding: 15px 20px; /* Adjusted from .hero > div */
+  .hero > div { /* Hero content box */
+    padding: 15px 20px;
   }
 
   /* Call to Action Button */
@@ -748,21 +763,15 @@ footer {
 .hero-text-content {
   position: relative; /* To allow z-index stacking */
   z-index: 2; /* Ensures it's above the slideshow */
-  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
-  padding: 20px 30px; /* Space inside the content box */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  max-width: 600px; /* Constrain width of the content box */
-  margin-left: auto; /* For centering if not a flex item or if max-width is hit */
-  margin-right: auto;
-
-  /* Flex properties for internal content alignment */
+  /* Add other styles for text alignment, padding, potential background, etc. */
+  /* For example, to center it and add a semi-transparent background:
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 100%; /* Ensure it can take up to max-width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  background-color: rgba(0, 0, 0, 0.3); /* Optional: dark overlay for text readability */
+  /* padding: 2rem; */
+  /* border-radius: 8px; */
+  /* height: 100%; /* If you want it to also take full height */
 }
