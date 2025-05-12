@@ -1237,4 +1237,76 @@ body:has(#ascent-wip-page) footer {
 
 /* ==========================================================================
    End of CSS
-   ========================================================================== */
+   ========================================================================== *//* Keyboard Accordion Styles */
+.keyboard-accordion {
+    margin-top: 1rem;
+}
+
+.keyboard-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator between items */
+}
+.keyboard-item:last-child {
+    border-bottom: none;
+}
+
+.keyboard-trigger {
+    background-color: transparent;
+    border: none;
+    color: #e0e0e0; /* Match text color */
+    font-size: 1.1rem; /* Match paragraph font size */
+    font-weight: 500;
+    padding: 1rem 0.5rem; /* Vertical padding, less horizontal */
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: flex; /* Use flex to align text and icon */
+    justify-content: space-between; /* Push icon to the right */
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.keyboard-trigger:hover,
+.keyboard-trigger.active { /* Style when hovered or active */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle highlight */
+    color: #ffffff;
+}
+
+.accordion-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-right: 0.15em solid currentColor; /* Arrow part 1 */
+    border-bottom: 0.15em solid currentColor; /* Arrow part 2 */
+    transform: rotate(45deg); /* Point down */
+    transition: transform 0.3s ease;
+    margin-right: 0.5rem; /* Space from edge */
+    flex-shrink: 0; /* Prevent icon shrinking */
+}
+
+.keyboard-trigger.active .accordion-icon {
+    transform: rotate(-135deg); /* Point up when active */
+}
+
+.keyboard-details {
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Smooth transition */
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly different background for details */
+    padding-left: 1.5rem; /* Indent details */
+    padding-right: 0.5rem;
+    color: #b0b0b0; /* Base color for detail text */
+}
+.keyboard-details.active {
+    /* max-height is set by JS */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.keyboard-details p {
+    margin: 0 0 0.5rem 0; /* Adjust spacing within details */
+    font-size: 1rem; /* Slightly smaller text for details */
+}
+.keyboard-details p strong {
+    color: #d0d0d0;
+    font-weight: 500;
+}
