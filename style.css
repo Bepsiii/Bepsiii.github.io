@@ -805,6 +805,7 @@ body:has(#ascent-wip-page) footer {
     background-position: center;
     background-repeat: no-repeat;
     border-bottom: none; /* Remove separator line, using backgrounds now */
+    text-align: center; /* Center inline-block children like h3 */
 }
 .setup-category:last-child {
     margin-bottom: 1rem; /* Reduce margin for the last item */
@@ -829,7 +830,7 @@ body:has(#ascent-wip-page) footer {
   background-image: url('/images/setup/section5.jpg');
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
-  background-image: url('/images/setup/section6.png');
+  background-image: url('/images/setup/section6.jpg');
 }
 #setup-details .setup-category:nth-of-type(7) { /* Server */
   background-image: url('/images/setup/section7.jpg');
@@ -871,7 +872,7 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 1.5rem;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid #007bff;
-    display: inline-block;
+    display: inline-block; /* Allows centering via parent's text-align: center */
     text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Add subtle shadow for readability */
 }
 .setup-category h3 .fas { /* Icon in heading */
@@ -888,6 +889,7 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 1rem;
     font-weight: 500;
     text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    text-align: left; /* Ensure subsection titles are left-aligned */
 }
 
 /* Specification List (Used for Desktop, Laptop, Server) */
@@ -895,6 +897,7 @@ body:has(#ascent-wip-page) footer {
     margin-top: 1rem;
     padding-left: 1rem; /* Indent spec list */
     line-height: 1.8; /* Increase line height for readability */
+    text-align: left; /* Ensure spec list content is left-aligned */
 }
 
 .spec-list dt { /* Definition Term (Label) */
@@ -920,6 +923,7 @@ body:has(#ascent-wip-page) footer {
     list-style: none; /* Remove default bullets */
     padding-left: 0.5rem; /* Slight indent for items */
     margin-top: 0.5rem;
+    text-align: left; /* Ensure item list content is left-aligned */
 }
 
 .item-list li {
@@ -939,6 +943,7 @@ body:has(#ascent-wip-page) footer {
 /* Keyboard Accordion Styles */
 .keyboard-accordion {
     margin-top: 1rem;
+    text-align: left; /* Ensure accordion content is left-aligned */
 }
 
 .keyboard-item {
@@ -994,6 +999,7 @@ body:has(#ascent-wip-page) footer {
     padding-left: 1.5rem; /* Indent details */
     padding-right: 0.5rem;
     color: #b0b0b0; /* Base color for detail text */
+    text-align: left; /* Ensure details are left-aligned */
 }
 .keyboard-details.active {
     /* max-height is set by JS */
@@ -1019,10 +1025,18 @@ body:has(#ascent-wip-page) footer {
     color: rgba(255, 255, 255, 0.4); /* Lighter placeholder text */
     font-style: italic;
     border-radius: 8px;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto; /* Center the placeholder if it's not full width */
     background-color: rgba(255, 255, 255, 0.03); /* Even more subtle background */
     position: relative; /* Ensure it's above the tint */
     z-index: 2;
+    max-width: 600px; /* Give it a max-width so it doesn't stretch too far */
+}
+.setup-image-placeholder img { /* Styling for actual images inside placeholder */
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin: 0 auto;
 }
 
 
