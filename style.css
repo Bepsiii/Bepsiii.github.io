@@ -800,7 +800,7 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 3rem; /* Space between categories */
     padding: 3rem 2rem; /* Padding inside the category for content spacing */
     border-radius: 8px; /* Rounded corners for the category block */
-    background-color: #1a1a1a; /* Fallback background */
+    background-color: #1a1a1a; /* Fallback background for sections without specific images */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -811,9 +811,8 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 1rem; /* Reduce margin for the last item */
 }
 
-/* --- Add Background Images Here --- */
+/* --- Background Images for Setup Categories --- */
 /* IMPORTANT: Replace these example URLs with paths to YOUR actual images! */
-/* Follow the structure: /images/setup/your-image-name.jpg */
 /* The order here MUST match the order of .setup-category divs in setup.html */
 
 #setup-details .setup-category:nth-of-type(1) { /* Desktop Specifications */
@@ -830,14 +829,14 @@ body:has(#ascent-wip-page) footer {
 }
 /* Section 5: Monitors & Other Gear - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(5) {
-  background-image: none;
+  background-image: none; /* Explicitly remove background */
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
   background-image: url('/images/setup/laptop_bg.jpg');
 }
 /* Section 7: Server - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(7) {
-  background-image: none;
+  background-image: none; /* Explicitly remove background */
 }
 
 
@@ -854,10 +853,10 @@ body:has(#ascent-wip-page) footer {
     transition: background-color 0.3s ease; /* Optional: transition if you change tint on hover */
     border-radius: 8px; /* Match parent border-radius */
 }
-/* Remove tint for sections without background images */
+/* Remove tint for sections without background images by making overlay transparent */
 #setup-details .setup-category:nth-of-type(5)::before,
 #setup-details .setup-category:nth-of-type(7)::before {
-    background-color: transparent; /* Make overlay transparent */
+    background-color: transparent;
 }
 
 
@@ -1028,6 +1027,7 @@ body:has(#ascent-wip-page) footer {
 
 
 /* Image Placeholder Styling - Make it blend better */
+/* This style applies if you choose to use inline images within the .setup-image-placeholder div */
 .setup-image-placeholder {
     border: 2px dashed rgba(255, 255, 255, 0.2); /* Lighter dash */
     padding: 3rem 1rem;
