@@ -257,54 +257,5 @@
             <a href="https://www.instagram.com/bepsiii_/" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
     </footer>
-
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const accordionTriggers = document.querySelectorAll('.keyboard-trigger');
-
-            if (accordionTriggers.length > 0) {
-                accordionTriggers.forEach(trigger => {
-                    // Set initial state based on aria-expanded
-                    const initialDetails = trigger.nextElementSibling;
-                    const isInitiallyExpanded = trigger.getAttribute('aria-expanded') === 'true';
-                    if (initialDetails) { // Check if details element exists
-                       initialDetails.style.maxHeight = isInitiallyExpanded ? initialDetails.scrollHeight + 'px' : null;
-                       if(isInitiallyExpanded) {
-                           initialDetails.classList.add('active');
-                           trigger.classList.add('active');
-                       }
-                    }
-
-
-                    trigger.addEventListener('click', function() {
-                        const details = this.nextElementSibling; // Get the .keyboard-details div
-                        if (!details) return; // Exit if details element doesn't exist
-
-                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-                        // Toggle the current item
-                        this.setAttribute('aria-expanded', !isExpanded);
-                        details.style.maxHeight = isExpanded ? null : details.scrollHeight + 'px';
-                        details.classList.toggle('active');
-                        this.classList.toggle('active'); // Toggle active class on button too
-
-                        // Optional: Close other items (Uncomment if desired)
-                        // accordionTriggers.forEach(otherTrigger => {
-                        //     if (otherTrigger !== this) {
-                        //         const otherDetails = otherTrigger.nextElementSibling;
-                        //         if (otherDetails) {
-                        //             otherTrigger.setAttribute('aria-expanded', 'false');
-                        //             otherDetails.style.maxHeight = null;
-                        //             otherDetails.classList.remove('active');
-                        //             otherTrigger.classList.remove('active');
-                        //         }
-                        //     }
-                        // });
-                    });
-                });
-            }
-        });
-    </script>
 </body>
 </html>

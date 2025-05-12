@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         typeEffect(); // Start the effect
 
         // Optionally set title only on the page with the typewriter
-        // Check if the current title indicates the home page before changing it
         if (document.title.toLowerCase().includes("welcome")) {
              document.title = `Welcome | ${nameToType}`;
         }
@@ -62,66 +61,69 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/slide1.jpg', // Replace with your actual image path
         'images/slide2.jpg', // Replace with your actual image path
         'images/slide3.jpg', // Replace with your actual image path
-        // Add more image paths as needed
     ];
     let currentHeroImageIndex = 0;
 
-    // Preload images for smoother transitions if hero section exists
     if (heroSection && heroImages.length > 0) {
-        heroImages.forEach(src => {
+        heroImages.forEach(src => { // Preload images
             const img = new Image();
             img.src = src;
         });
-    }
 
-    function changeHeroBackground() {
-        // Check necessary conditions before changing background
-        if (heroImages.length === 0 || !heroSection || !heroSection.style) return;
+        function changeHeroBackground() {
+            if (!heroSection.style) return;
+            currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
+            heroSection.style.backgroundImage = `url('${heroImages[currentHeroImageIndex]}')`;
+        }
 
-        currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
-        heroSection.style.backgroundImage = `url('${heroImages[currentHeroImageIndex]}')`;
-    }
-
-    // Initialize Hero Slideshow if the section exists and has images
-    if (heroSection && heroImages.length > 0) {
         if (heroSection.style) {
              heroSection.style.backgroundImage = `url('${heroImages[0]}')`; // Set initial image
         }
         setInterval(changeHeroBackground, 7000); // Change image every 7 seconds
     } else if (heroSection && heroImages.length === 0) {
-        // Log if hero section exists but no images are provided
-        console.log("Hero slideshow initialized, but no images are provided in the heroImages array.");
+        console.log("Hero slideshow initialized, but no images are provided.");
     }
 
     // --- Keyboard Accordion (for setup.html) ---
     if (accordionTriggers.length > 0) {
         accordionTriggers.forEach(trigger => {
-            // Set initial state based on aria-expanded attribute
-            const initialDetails = trigger.nextElementSibling; // The content div
+            const detailsPanel = trigger.nextElementSibling; // The content div (e.g., .keyboard-details)
             const isInitiallyExpanded = trigger.getAttribute('aria-expanded') === 'true';
 
-            if (initialDetails && initialDetails.classList.contains('keyboard-details')) { // Verify it's the correct element
+            // Ensure the detailsPanel exists and is the correct element
+            if (detailsPanel && detailsPanel.classList.contains('keyboard-details')) {
                // Set initial max-height based on expanded state
-               initialDetails.style.maxHeight = isInitiallyExpanded ? initialDetails.scrollHeight + 'px' : null;
-               // Add active classes if initially expanded
+               detailsPanel.style.maxHeight = isInitiallyExpanded ? detailsPanel.scrollHeight + 'px' : null;
                if(isInitiallyExpanded) {
-                   initialDetails.classList.add('active');
+                   detailsPanel.classList.add('active');
                    trigger.classList.add('active');
                }
+            } else if (detailsPanel) {
+                // console.warn("Accordion trigger's next sibling is not .keyboard-details:", trigger);
             }
 
-            // Add click listener to toggle the accordion item
+
             trigger.addEventListener('click', function() {
-                const details = this.nextElementSibling; // Get the .keyboard-details div
-                if (!details || !details.classList.contains('keyboard-details')) return; // Exit if details element doesn't exist or isn't correct
+                const currentDetails = this.nextElementSibling;
+                if (!currentDetails || !currentDetails.classList.contains('keyboard-details')) {
+                    console.error("Could not find details panel for trigger:", this);
+                    return;
+                }
 
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
                 // Toggle the current item's state
-                this.setAttribute('aria-expanded', !isExpanded);
-                details.style.maxHeight = isExpanded ? null : details.scrollHeight + 'px';
-                details.classList.toggle('active');
+                this.setAttribute('aria-expanded', String(!isExpanded)); // Convert boolean to string for attribute
+                currentDetails.classList.toggle('active');
                 this.classList.toggle('active'); // Toggle active class on button too
+
+                if (!isExpanded) { // If it was closed, now opening
+                    currentDetails.style.maxHeight = currentDetails.scrollHeight + 'px';
+                    // console.log(`Opening: ${this.textContent.trim()}, scrollHeight: ${currentDetails.scrollHeight}px`);
+                } else { // If it was open, now closing
+                    currentDetails.style.maxHeight = null;
+                    // console.log(`Closing: ${this.textContent.trim()}`);
+                }
 
                 // --- Optional: Close other accordion items ---
                 // Uncomment the block below if you want only one item open at a time
