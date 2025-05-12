@@ -789,26 +789,25 @@ body:has(#ascent-wip-page) footer {
     /* This section will inherit styles from .content-section by default */
     /* It should now have the standard grey box background and padding */
     animation: fadeInSection 1s ease-out forwards; /* Ensure animation is applied */
-    /* Ensure it gets the default .content-section padding and background */
-    padding: 3rem 2rem; /* Re-apply if somehow lost */
-    background-color: #121212; /* Re-apply if somehow lost */
-    border-top: 3px solid #007bff; /* Re-apply if somehow lost */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.25); /* Re-apply */
-
+    padding: 3rem 2rem; /* Standard .content-section padding */
+    background-color: #121212; /* Standard .content-section background */
+    border-top: 3px solid #007bff; /* Standard .content-section border */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.25); /* Standard shadow */
 }
 
 .setup-category {
     position: relative; /* Needed for the ::before overlay */
     overflow: hidden; /* Contain the overlay */
-    margin-bottom: 2rem; /* Space between categories, reduced from 3rem */
+    margin-bottom: 2rem; /* Space between categories */
     padding: 2rem 1.5rem; /* Padding inside the category for content spacing */
     border-radius: 8px; /* Rounded corners for the category block */
-    background-color: #1a1a1a; /* Fallback background for sections */
+    background-color: #1F1F1F; /* Consistent "lighter grey box" for all categories */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     text-align: center; /* Center inline-block children like h3 */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Add a subtle shadow to each category */
+    border: 1px solid #333; /* Subtle border for all category boxes */
 }
 .setup-category:last-child {
     margin-bottom: 0; /* Remove bottom margin from the last category inside #setup-details */
@@ -832,16 +831,14 @@ body:has(#ascent-wip-page) footer {
 }
 /* Section 5: Monitors & Other Gear - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(5) {
-  background-image: none;
-  background-color: #222; /* Slightly different fallback if no image */
+  background-image: none; /* Will use the #1F1F1F fallback from .setup-category */
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
   background-image: url('/images/setup/laptop_bg.jpg');
 }
 /* Section 7: Server - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(7) {
-  background-image: none;
-  background-color: #222; /* Slightly different fallback if no image */
+  background-image: none; /* Will use the #1F1F1F fallback from .setup-category */
 }
 
 
@@ -853,16 +850,21 @@ body:has(#ascent-wip-page) footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.65); /* Adjust darkness (0.65 = 65% black) */
+    background-color: transparent; /* Default to transparent */
     z-index: 1; /* Behind content, above background image */
     transition: background-color 0.3s ease; /* Optional: transition if you change tint on hover */
     border-radius: 8px; /* Match parent border-radius */
 }
-/* Remove tint for sections without background images by making overlay transparent */
-#setup-details .setup-category:nth-of-type(5)::before,
-#setup-details .setup-category:nth-of-type(7)::before {
-    background-color: transparent;
+/* Apply dark tint ONLY if a background image IS LIKELY SET (nth-of-type for those with images) */
+#setup-details .setup-category:nth-of-type(1)::before, /* Desktop */
+#setup-details .setup-category:nth-of-type(2)::before, /* Mice */
+#setup-details .setup-category:nth-of-type(3)::before, /* Keyboards */
+#setup-details .setup-category:nth-of-type(4)::before, /* Audio */
+#setup-details .setup-category:nth-of-type(6)::before  /* Laptop */ {
+    background-color: rgba(0, 0, 0, 0.65); /* Dark tint for sections with images */
 }
+/* For sections without images (5 and 7), the ::before will remain transparent,
+   showing the .setup-category background-color of #1F1F1F. */
 
 
 /* Ensure all direct children content is above the tint */
