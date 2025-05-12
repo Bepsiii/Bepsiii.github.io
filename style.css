@@ -811,29 +811,28 @@ body:has(#ascent-wip-page) footer {
 }
 
 /* --- Add Background Images Here --- */
-/* Add specific background images for each category. Use unique IDs or nth-of-type */
-/* IMPORTANT: Replace the example URLs with paths to YOUR actual images! */
-/* Example: */
+/* IMPORTANT: Replace these example URLs with paths to YOUR actual images! */
+/* Follow the structure: /images/setup/sectionX.jpg */
 #setup-details .setup-category:nth-of-type(1) { /* Desktop */
-  /* background-image: url('images/desktop_bg.jpg'); */
+  background-image: url('/images/setup/section1.jpg');
 }
 #setup-details .setup-category:nth-of-type(2) { /* Mice & Mousepads */
-  /* background-image: url('images/mice_bg.jpg'); */
+  background-image: url('/images/setup/section2.jpg');
 }
 #setup-details .setup-category:nth-of-type(3) { /* Keyboards */
-  /* background-image: url('images/keyboards_bg.jpg'); */
+  background-image: url('/images/setup/section3.jpg');
 }
 #setup-details .setup-category:nth-of-type(4) { /* Audio */
-  /* background-image: url('images/audio_bg.jpg'); */
+  background-image: url('/images/setup/section4.jpg');
 }
 #setup-details .setup-category:nth-of-type(5) { /* Monitors etc */
-  /* background-image: url('images/monitors_bg.jpg'); */
+  background-image: url('/images/setup/section5.jpg');
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
-  /* background-image: url('images/laptop_bg.jpg'); */
+  background-image: url('/images/setup/section6.png');
 }
 #setup-details .setup-category:nth-of-type(7) { /* Server */
-  /* background-image: url('images/server_bg.jpg'); */
+  background-image: url('/images/setup/section7.jpg');
 }
 
 
