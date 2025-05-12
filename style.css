@@ -801,7 +801,7 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 2rem; /* Space between categories */
     padding: 2rem 1.5rem; /* Padding inside the category for content spacing */
     border-radius: 8px; /* Rounded corners for the category block */
-    background-color: #1F1F1F; /* Consistent "lighter grey box" for all categories */
+    background-color: #1F1F1F; /* CONSISTENT "lighter grey box" for ALL categories */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -861,7 +861,7 @@ body:has(#ascent-wip-page) footer {
 #setup-details .setup-category:nth-of-type(3)::before, /* Keyboards */
 #setup-details .setup-category:nth-of-type(4)::before, /* Audio */
 #setup-details .setup-category:nth-of-type(6)::before  /* Laptop */ {
-    background-color: rgba(0, 0, 0, 0.65); /* Dark tint for sections with images */
+    background-color: rgba(0, 0, 0, 0.45); /* ADJUSTED TINT to be lighter */
 }
 /* For sections without images (5 and 7), the ::before will remain transparent,
    showing the .setup-category background-color of #1F1F1F. */
