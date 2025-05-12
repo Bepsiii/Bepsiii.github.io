@@ -787,9 +787,14 @@ body:has(#ascent-wip-page) footer {
    -------------------------------------------------------------------------- */
 #setup-details {
     /* This section will inherit styles from .content-section by default */
-    /* We removed the specific overrides that made it transparent and padding-less */
-    /* So it should now have the standard grey box background and padding */
-    animation: fadeInSection 1s ease-out forwards; /* Ensure animation is applied if removed before */
+    /* It should now have the standard grey box background and padding */
+    animation: fadeInSection 1s ease-out forwards; /* Ensure animation is applied */
+    /* Ensure it gets the default .content-section padding and background */
+    padding: 3rem 2rem; /* Re-apply if somehow lost */
+    background-color: #121212; /* Re-apply if somehow lost */
+    border-top: 3px solid #007bff; /* Re-apply if somehow lost */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.25); /* Re-apply */
+
 }
 
 .setup-category {
@@ -802,7 +807,6 @@ body:has(#ascent-wip-page) footer {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Removed border-bottom: none; as it's not needed if categories are distinct blocks */
     text-align: center; /* Center inline-block children like h3 */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Add a subtle shadow to each category */
 }
