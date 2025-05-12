@@ -4,7 +4,7 @@
 
    1.  Reset & Base Styles (body)
    2.  Global Elements & Components
-       - Links (general, .inline-link)
+       - Links (general, .inline-link, nav current page)
        - Buttons (.cta-button)
    3.  Layout Components
        - Header & Navigation
@@ -16,7 +16,9 @@
        - Home Page (Hero Section, Typewriter)
        - Contact Page (#contact-form-section, #contactForm, .contact-info-item, #discord-section)
        - About Page (#about-content, .about-subsection)
-       - AscentCustoms WIP Page (#ascent-wip-page) <--- NEW SECTION
+       - AscentCustoms WIP Page (#ascent-wip-page)
+       - AscentCustoms Project Page (#ascentcustoms-details, .store-links-list, .project-cta-buttons)
+       - Setup Page (#setup-details, .setup-category, .keyboard-accordion)
        - Reviews Page (Placeholder for future specific styles)
    6.  Animations (@keyframes)
    7.  Responsive Styles (@media queries)
@@ -55,6 +57,14 @@ body {
   border-bottom-color: #33c6ff;
   text-decoration: none; /* Ensure no default underline appears on hover */
 }
+
+/* Navigation Current Page Link */
+nav ul li ul li a.current-page-link, /* For dropdown items */
+nav ul > li > a.current-page-link { /* For main nav items if directly linked */
+  color: #00bfff; /* Or your preferred highlight color */
+  font-weight: 700; /* Make it bold */
+}
+
 
 /* Buttons
    -------------------------------------------------------------------------- */
@@ -118,7 +128,7 @@ nav ul li {
   position: relative; /* For positioning dropdowns */
 }
 
-nav a {
+nav a { /* General style for all nav links */
   text-decoration: none;
   color: #e0e0e0;
   font-weight: 500;
@@ -173,7 +183,7 @@ footer {
   background-color: #1a1a1a;
   color: #999999;
   font-size: 0.9rem;
-  margin-top: 3rem; /* Default margin, will be overridden for WIP page */
+  margin-top: 3rem; /* Default margin, might be overridden */
 }
 
 .social-links {
@@ -225,7 +235,7 @@ footer {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Generic Content Section (Used on About, Contact, Reviews pages)
+/* Generic Content Section (Base for About, Contact, Reviews, Setup, etc.)
    -------------------------------------------------------------------------- */
 .content-section {
   padding: 3rem 2rem;
@@ -349,7 +359,7 @@ footer {
 }
 
 .hero .cta-button { /* Specific CTA adjustments for hero if needed */
-  background-image: linear-gradient(to right, #007bff, #0056b3); /* Ensure it's not overridden by other .hero .cta-button styles if any */
+  background-image: linear-gradient(to right, #007bff, #0056b3);
 }
 
 /* Contact Page
@@ -584,38 +594,38 @@ footer {
   /* Inherits from .content-section p by default */
 }
 
-/* AscentCustoms WIP Page
+/* AscentCustoms WIP Page (Full Screen Style)
    -------------------------------------------------------------------------- */
 #ascent-wip-page { /* Main container for the WIP page content */
-  height: calc(100vh - 100px); /* Adjust 100px based on your actual header height, if footer is fixed add its height too */
-  /* If header is not fixed, you might need a different approach or JS to calculate height */
+  height: calc(100vh - 100px); /* Adjust 100px based on your actual header height */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative; /* For z-index context and backdrop positioning */
-  overflow: hidden; /* Prevent scrollbars within this section */
-  padding: 0; /* Override any .content-section padding */
-  margin: 0; /* Override any .content-section margin */
-  max-width: none; /* Override .content-section max-width */
-  background-color: #000000; /* Ensure black background behind backdrop */
-  border-top: none; /* Override .content-section border */
-  animation: none; /* Override .content-section animation */
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  background-color: #000000;
+  border-top: none;
+  animation: none;
+  box-shadow: none; /* Override default content section shadow */
+  border-radius: 0; /* Override default content section radius */
 }
 
-/* Remove site footer margin for this specific page if it's full screen */
+/* Remove site footer margin for this specific page */
 body:has(#ascent-wip-page) footer {
   margin-top: 0;
 }
 
-
 .ascent-backdrop {
-  position: absolute; /* Changed from fixed to be relative to #ascent-wip-page */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Behind content */
+  z-index: 0;
   background-image: url('https://media.tenor.com/APB12vyfxVUAAAAM/fractal-universe.gif');
   background-size: cover;
   background-position: center;
@@ -626,7 +636,7 @@ body:has(#ascent-wip-page) footer {
 
 .ascent-container {
   position: relative;
-  z-index: 1; /* Above backdrop */
+  z-index: 1;
   padding: 30px;
   max-width: 700px;
   background-color: rgba(10, 10, 10, 0.3);
@@ -635,7 +645,7 @@ body:has(#ascent-wip-page) footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #E0E0E0; /* Default text color for this container */
+  color: #E0E0E0;
 }
 
 .ascent-container h1 {
@@ -650,9 +660,9 @@ body:has(#ascent-wip-page) footer {
 
 .ascent-subtitle {
   font-size: 1.3rem;
-  font-weight: 100; /* Very light weight */
+  font-weight: 100;
   color: #CCCCCC;
-  margin-top: -15px; /* Closer to h1 */
+  margin-top: -15px;
   margin-bottom: 30px;
 }
 
@@ -671,11 +681,11 @@ body:has(#ascent-wip-page) footer {
 }
 
 .ascent-details strong {
-  font-weight: 400; /* Regular weight for emphasis */
+  font-weight: 400;
   color: #D0D0D0;
 }
 
-.ascent-page-footer { /* Specific to the content within ascent-container */
+.ascent-page-footer {
   font-size: 0.8rem;
   font-weight: 300;
   color: #757575;
@@ -687,7 +697,7 @@ body:has(#ascent-wip-page) footer {
 }
 
 .ascent-copyright-text {
-  margin-bottom: 0; /* Remove default margin if button is below */
+  margin-bottom: 0;
 }
 
 .ascent-footer-button {
@@ -711,219 +721,67 @@ body:has(#ascent-wip-page) footer {
   outline: none;
 }
 
-
-/* Reviews Page
+/* AscentCustoms Project Page (Standard Layout)
    -------------------------------------------------------------------------- */
-/* Placeholder for any specific styles for the reviews page beyond .content-section */
-/* .review-item { ... } */
-
-
-/* ==========================================================================
-   6. Animations (@keyframes)
-   ========================================================================== */
-
-@keyframes fadeInHero {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+#ascentcustoms-details { /* This is a .content-section */
+ /* Add specific styles if needed beyond .content-section and .about-subsection */
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+.project-image-placeholder { /* Placeholder for inline images on project pages */
+  border: 2px dashed #444;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #00ccff; } /* Caret color */
-}
-
-@keyframes fadeInSection {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ==========================================================================
-   7. Responsive Styles (@media queries)
-   ========================================================================== */
-
-@media (max-width: 768px) {
-  /* Header & Navigation */
-  header {
-    flex-direction: column; /* Stack logo and nav on small screens */
-    padding: 1rem;
-  }
-  nav ul {
-    flex-direction: column; /* Stack nav items */
-    align-items: center; /* Center nav items */
-    gap: 0.5rem; /* Reduce gap */
-    margin-top: 1rem; /* Space between logo and nav */
-  }
-  nav ul li ul { /* Ensure dropdowns still work correctly */
-    left: 50%;
-    transform: translateX(-50%); /* Center dropdown below parent */
-    min-width: 150px;
-  }
-  nav a,
-  nav ul li ul li a {
-    padding: 0.5rem 1rem; /* Adjust padding for touch targets */
-  }
-
-
-  /* Hero Section */
-  .hero h1,
-  .typewriter-container {
-    font-size: 2.2rem; /* Smaller font size for mobile */
-  }
-  .hero p.subtitle {
-    font-size: 1.1rem; /* Smaller subtitle for mobile */
-  }
-  .hero > div { /* Hero content box */
-    padding: 15px 20px;
-  }
-
-  /* Call to Action Button */
-  .cta-button,
-  .social-links a,
-  .form-submit-button,
-  .discord-copy-button {
-    padding: 0.7rem 1.5rem; /* Adjust button padding for mobile */
-    font-size: 1rem; /* Smaller button text */
-  }
-
-  /* Content Sections */
-  .content-section {
-    padding: 2rem 1rem; /* Less padding on smaller screens */
-    margin: 2rem auto;
-  }
-  .content-section .section-title-wrapper h2,
-  #discord-section .section-title-wrapper h2 {
-    font-size: 2rem;
-  }
-  .content-section p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  /* Page Specific Headers */
-  .page-header h1 {
-    font-size: 2.2rem;
-  }
-
-  /* Contact Form */
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group textarea {
-    padding: 0.8rem;
-    font-size: 0.95rem;
-  }
-
-  /* About Page */
-  .about-subsection h3 {
-    font-size: 1.5rem;
-  }
-
-  /* Discord Section */
-  .discord-tag-container {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-  .discord-icon {
-    font-size: 2rem;
-  }
-  .discord-tag {
-    font-size: 1.1rem;
-  }
-
-  /* AscentCustoms WIP Page */
-  .ascent-container h1 {
-    font-size: 2.2rem;
-  }
-  .ascent-subtitle {
-    font-size: 1.1rem;
-  }
-  .ascent-details {
-    font-size: 1rem;
-  }
-  .ascent-container {
-    padding: 25px;
-    margin: 20px; /* Add some margin so it doesn't touch screen edges */
-    max-width: calc(100% - 40px); /* Ensure padding/margin respected */
-  }
-  .ascent-footer-button {
-    padding: 7px 15px;
-    font-size: 0.8rem;
-  }
-  #ascent-wip-page {
-     height: calc(100vh - 80px); /* Adjust for potentially taller mobile header */
-  }
-
-}
-
-@media (max-width: 480px) {
-  /* Further adjustments for very small screens */
-  .hero h1,
-  .typewriter-container {
-    font-size: 1.8rem;
-  }
-  .hero p.subtitle {
-    font-size: 1rem;
-  }
-
-  .page-header h1 {
-    font-size: 2rem;
-  }
-
-  .content-section .section-title-wrapper h2,
-  #discord-section .section-title-wrapper h2 {
-    font-size: 1.8rem;
-  }
-  .content-section p {
-    font-size: 0.95rem;
-  }
-  .content-section .section-title-wrapper h2,
-  #discord-section .section-title-wrapper h2 {
-    font-size: 1.6rem;
-  }
-}
-
-
-/* Styles for Store Links List on AscentCustoms Project Page */
 .store-links-list {
-    list-style: none; /* Remove default bullet points */
-    padding-left: 0; /* Remove default padding */
+    list-style: none;
+    padding-left: 0;
     margin-top: 0.5rem;
 }
 
 .store-links-list li {
-    margin-bottom: 1rem; /* Space between list items */
-    display: flex; /* Align icon and link */
-    align-items: flex-start; /* Align items to the start of the flex line */
-    gap: 0.75rem; /* Space between icon and text content */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 
-.store-links-list li .fas { /* Styling for Font Awesome icons */
-    font-size: 1.1rem; /* Adjust icon size */
-    color: #00bfff; /* Icon color - match your theme's accent */
-    margin-top: 0.2em; /* Slight top margin to better align with text */
-    flex-shrink: 0; /* Prevent icon from shrinking */
+.store-links-list li .fas {
+    font-size: 1.1rem;
+    color: #00bfff;
+    margin-top: 0.2em;
+    flex-shrink: 0;
 }
 
 .store-links-list li a.inline-link {
-    /* The .inline-link class already provides good base styling */
-    /* You can add more specific styles here if needed */
-    font-size: 1.1rem; /* Ensure consistent font size */
+    font-size: 1.1rem;
 }
 
 .store-links-list li a.inline-link strong {
-    color: #e0e0e0; /* Make the "eBay Store:" part slightly more prominent */
+    color: #e0e0e0;
     font-weight: 500;
 }
 .store-links-list li a.inline-link:hover {
     text-decoration: underline; /* Underline on hover for better UX */
-} 
-/* ==========================================================================
-   5. Page-Specific Styles (Additions/Modifications for Setup Page)
-   ========================================================================== */
+}
+
+.project-cta-buttons {
+    text-align: center;
+    margin-top: 2rem;
+    display: flex; /* Arrange buttons in a row */
+    justify-content: center; /* Center buttons */
+    gap: 1rem; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+.project-cta-buttons .cta-button {
+    margin-top: 0; /* Override default margin-top for buttons in this container */
+}
+
 
 /* Setup Page (#setup-details)
    -------------------------------------------------------------------------- */
@@ -995,7 +853,7 @@ body:has(#ascent-wip-page) footer {
 
 /* Ensure all direct children content is above the tint */
 /* Also target the intro paragraph if it's directly inside #setup-details */
-#setup-details > p:first-of-type,
+#setup-details > p:first-of-type, /* For the intro paragraph */
 .setup-category > h3,
 .setup-category > .setup-image-placeholder,
 .setup-category > .spec-list,
@@ -1169,144 +1027,249 @@ body:has(#ascent-wip-page) footer {
 }
 
 
+/* Reviews Page
+   -------------------------------------------------------------------------- */
+/* Placeholder for any specific styles for the reviews page beyond .content-section */
+/* .review-item { ... } */
+
+
 /* ==========================================================================
-   7. Responsive Styles (@media queries) - Additions/Modifications for Setup Page
+   6. Animations (@keyframes)
+   ========================================================================== */
+
+@keyframes fadeInHero {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #00ccff; } /* Caret color */
+}
+
+@keyframes fadeInSection { /* Apply this selectively if needed */
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   7. Responsive Styles (@media queries)
    ========================================================================== */
 
 @media (max-width: 768px) {
-    /* Setup Page */
-    .setup-category {
-        padding: 2rem 1.5rem; /* Adjust padding */
-    }
-    .setup-category h3 {
-        font-size: 1.6rem;
-    }
-    .setup-subsection h4 {
-        font-size: 1.2rem;
-    }
-    .spec-list dt {
-        width: 80px; /* Reduce label width */
-    }
-    .spec-list dd {
-        width: calc(100% - 95px); /* Adjust value width */
-    }
-    .item-list li {
-        font-size: 0.95rem;
-    }
-    .keyboard-trigger {
-        font-size: 1rem;
-    }
-    .keyboard-details p {
-        font-size: 0.95rem;
-    }
+  /* Header & Navigation */
+  header {
+    flex-direction: column; /* Stack logo and nav on small screens */
+    padding: 1rem;
+  }
+  nav ul {
+    flex-direction: column; /* Stack nav items */
+    align-items: center; /* Center nav items */
+    gap: 0.5rem; /* Reduce gap */
+    margin-top: 1rem; /* Space between logo and nav */
+  }
+  nav ul li ul { /* Ensure dropdowns still work correctly */
+    left: 50%;
+    transform: translateX(-50%); /* Center dropdown below parent */
+    min-width: 150px;
+  }
+  nav a,
+  nav ul li ul li a {
+    padding: 0.5rem 1rem; /* Adjust padding for touch targets */
+  }
+
+
+  /* Hero Section */
+  .hero h1,
+  .typewriter-container {
+    font-size: 2.2rem; /* Smaller font size for mobile */
+  }
+  .hero p.subtitle {
+    font-size: 1.1rem; /* Smaller subtitle for mobile */
+  }
+  .hero > div { /* Hero content box */
+    padding: 15px 20px;
+  }
+
+  /* Call to Action Button */
+  .cta-button,
+  .social-links a,
+  .form-submit-button,
+  .discord-copy-button {
+    padding: 0.7rem 1.5rem; /* Adjust button padding for mobile */
+    font-size: 1rem; /* Smaller button text */
+  }
+
+  /* Content Sections */
+  .content-section {
+    padding: 2rem 1rem; /* Less padding on smaller screens */
+    margin: 2rem auto;
+  }
+  .content-section .section-title-wrapper h2,
+  #discord-section .section-title-wrapper h2 {
+    font-size: 2rem;
+  }
+  .content-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Page Specific Headers */
+  .page-header h1 {
+    font-size: 2.2rem;
+  }
+
+  /* Contact Form */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  /* About Page */
+  .about-subsection h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Discord Section */
+  .discord-tag-container {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .discord-icon {
+    font-size: 2rem;
+  }
+  .discord-tag {
+    font-size: 1.1rem;
+  }
+
+  /* AscentCustoms WIP Page */
+  .ascent-container h1 {
+    font-size: 2.2rem;
+  }
+  .ascent-subtitle {
+    font-size: 1.1rem;
+  }
+  .ascent-details {
+    font-size: 1rem;
+  }
+  .ascent-container {
+    padding: 25px;
+    margin: 20px; /* Add some margin so it doesn't touch screen edges */
+    max-width: calc(100% - 40px); /* Ensure padding/margin respected */
+  }
+  .ascent-footer-button {
+    padding: 7px 15px;
+    font-size: 0.8rem;
+  }
+  #ascent-wip-page {
+     height: calc(100vh - 80px); /* Adjust for potentially taller mobile header */
+  }
+
+  /* Setup Page */
+  .setup-category {
+      padding: 2rem 1.5rem; /* Adjust padding */
+  }
+  .setup-category h3 {
+      font-size: 1.6rem;
+  }
+  .setup-subsection h4 {
+      font-size: 1.2rem;
+  }
+  .spec-list dt {
+      width: 80px; /* Reduce label width */
+  }
+  .spec-list dd {
+      width: calc(100% - 95px); /* Adjust value width */
+  }
+  .item-list li {
+      font-size: 0.95rem;
+  }
+  .keyboard-trigger {
+      font-size: 1rem;
+  }
+  .keyboard-details p {
+      font-size: 0.95rem;
+  }
+
 }
 
 @media (max-width: 480px) {
-    /* Setup Page */
-    .setup-category {
-        padding: 1.5rem 1rem; /* Adjust padding */
-    }
-    .spec-list dt,
-    .spec-list dd {
-        display: block; /* Stack label and value */
-        width: 100%;
-        margin-right: 0;
-        vertical-align: baseline;
-    }
-    .spec-list dt {
-        margin-bottom: 0.1rem; /* Small space below label */
-        color: #00bfff; /* Make label stand out more */
-    }
-     .spec-list dd {
-        margin-bottom: 0.8rem; /* Space below value */
-        padding-left: 1rem; /* Indent value below label */
-    }
-    .setup-category {
-        padding-bottom: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    .setup-category h3 {
-        font-size: 1.5rem;
-    }
-     .keyboard-trigger {
-        padding: 0.8rem 0.2rem;
-    }
-}
+  /* Further adjustments for very small screens */
+  .hero h1,
+  .typewriter-container {
+    font-size: 1.8rem;
+  }
+  .hero p.subtitle {
+    font-size: 1rem;
+  }
 
-/* ... rest of your existing responsive styles ... */
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .content-section .section-title-wrapper h2,
+  #discord-section .section-title-wrapper h2 {
+    font-size: 1.8rem;
+  }
+  .content-section p {
+    font-size: 0.95rem;
+  }
+
+  /* AscentCustoms WIP Page */
+  .ascent-container h1 {
+    font-size: 1.8rem;
+  }
+  .ascent-subtitle {
+    font-size: 1rem;
+  }
+  .ascent-details {
+    font-size: 0.9rem;
+  }
+  .ascent-page-footer {
+    margin-top: 30px;
+  }
+  #ascent-wip-page {
+     height: calc(100vh - 70px); /* Further adjustment for mobile header */
+  }
+
+  /* Setup Page */
+  .setup-category {
+      padding: 1.5rem 1rem; /* Adjust padding */
+  }
+  .spec-list dt,
+  .spec-list dd {
+      display: block; /* Stack label and value */
+      width: 100%;
+      margin-right: 0;
+      vertical-align: baseline;
+  }
+  .spec-list dt {
+      margin-bottom: 0.1rem; /* Small space below label */
+      color: #00bfff; /* Make label stand out more */
+  }
+   .spec-list dd {
+      margin-bottom: 0.8rem; /* Space below value */
+      padding-left: 1rem; /* Indent value below label */
+  }
+  .setup-category {
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+  }
+  .setup-category h3 {
+      font-size: 1.5rem;
+  }
+   .keyboard-trigger {
+      padding: 0.8rem 0.2rem;
+  }
+}
 
 /* ==========================================================================
    End of CSS
-   ========================================================================== *//* Keyboard Accordion Styles */
-.keyboard-accordion {
-    margin-top: 1rem;
-}
-
-.keyboard-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator between items */
-}
-.keyboard-item:last-child {
-    border-bottom: none;
-}
-
-.keyboard-trigger {
-    background-color: transparent;
-    border: none;
-    color: #e0e0e0; /* Match text color */
-    font-size: 1.1rem; /* Match paragraph font size */
-    font-weight: 500;
-    padding: 1rem 0.5rem; /* Vertical padding, less horizontal */
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    display: flex; /* Use flex to align text and icon */
-    justify-content: space-between; /* Push icon to the right */
-    align-items: center;
-    transition: background-color 0.2s ease;
-}
-
-.keyboard-trigger:hover,
-.keyboard-trigger.active { /* Style when hovered or active */
-    background-color: rgba(255, 255, 255, 0.05); /* Subtle highlight */
-    color: #ffffff;
-}
-
-.accordion-icon {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border-right: 0.15em solid currentColor; /* Arrow part 1 */
-    border-bottom: 0.15em solid currentColor; /* Arrow part 2 */
-    transform: rotate(45deg); /* Point down */
-    transition: transform 0.3s ease;
-    margin-right: 0.5rem; /* Space from edge */
-    flex-shrink: 0; /* Prevent icon shrinking */
-}
-
-.keyboard-trigger.active .accordion-icon {
-    transform: rotate(-135deg); /* Point up when active */
-}
-
-.keyboard-details {
-    max-height: 0; /* Hidden by default */
-    overflow: hidden;
-    transition: max-height 0.4s ease-out; /* Smooth transition */
-    background-color: rgba(0, 0, 0, 0.1); /* Slightly different background for details */
-    padding-left: 1.5rem; /* Indent details */
-    padding-right: 0.5rem;
-    color: #b0b0b0; /* Base color for detail text */
-}
-.keyboard-details.active {
-    /* max-height is set by JS */
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-.keyboard-details p {
-    margin: 0 0 0.5rem 0; /* Adjust spacing within details */
-    font-size: 1rem; /* Slightly smaller text for details */
-}
-.keyboard-details p strong {
-    color: #d0d0d0;
-    font-weight: 500;
-}
+   ========================================================================== */
