@@ -800,10 +800,10 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 2rem; /* Space between categories */
     padding: 2rem 1.5rem; /* Padding inside the category for content spacing */
     border-radius: 8px; /* Rounded corners for the category block */
-    background-color: #1F1F1F; /* CONSISTENT "lighter grey box" for ALL categories */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #1A1A1A; /* CONSISTENT DARK background for ALL categories */
+    background-size: cover; /* Will apply if background-image is set */
+    background-position: center; /* Will apply if background-image is set */
+    background-repeat: no-repeat; /* Will apply if background-image is set */
     text-align: center; /* Center inline-block children like h3 */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Add a subtle shadow to each category */
     border: 1px solid #333; /* Subtle border for all category boxes */
@@ -812,36 +812,35 @@ body:has(#ascent-wip-page) footer {
     margin-bottom: 0; /* Remove bottom margin from the last category inside #setup-details */
 }
 
-/* --- Background Images for Setup Categories --- */
-/* IMPORTANT: Replace these example URLs with paths to YOUR actual images! */
+/* --- Background Images for Setup Categories (OPTIONAL) --- */
 /* The order here MUST match the order of .setup-category divs in setup.html */
+/* If you want a background image for a section, uncomment and set the URL */
 
+/*
 #setup-details .setup-category:nth-of-type(1) { /* Desktop Specifications */
-  background-image: url('/images/setup/desktop_bg.jpg');
-}
+/* background-image: url('/images/setup/desktop_bg.jpg'); */
+/* } */
+/*
 #setup-details .setup-category:nth-of-type(2) { /* Mice & Mousepads */
-  background-image: url('/images/setup/mice_mousepads_bg.jpg');
-}
+/* background-image: url('/images/setup/mice_mousepads_bg.jpg'); */
+/* } */
+/*
 #setup-details .setup-category:nth-of-type(3) { /* Keyboards */
-  background-image: url('/images/setup/keyboards_bg.jpg');
-}
+/* background-image: url('/images/setup/keyboards_bg.jpg'); */
+/* } */
+/*
 #setup-details .setup-category:nth-of-type(4) { /* Audio Setup */
-  background-image: url('/images/setup/audio_bg.jpg');
-}
+/* background-image: url('/images/setup/audio_bg.jpg'); */
+/* } */
 /* Section 5: Monitors & Other Gear - NO BACKGROUND IMAGE */
-#setup-details .setup-category:nth-of-type(5) {
-  background-image: none; /* Will use the #1F1F1F fallback from .setup-category */
-}
+/*
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
-  background-image: url('/images/setup/laptop_bg.jpg');
-}
+/* background-image: url('/images/setup/laptop_bg.jpg'); */
+/* } */
 /* Section 7: Server - NO BACKGROUND IMAGE */
-#setup-details .setup-category:nth-of-type(7) {
-  background-image: none; /* Will use the #1F1F1F fallback from .setup-category */
-}
 
 
-/* Tint Overlay for Background Images */
+/* Tint Overlay for Background Images (Only applies if background-image is set) */
 .setup-category::before {
     content: "";
     position: absolute;
@@ -851,25 +850,26 @@ body:has(#ascent-wip-page) footer {
     height: 100%;
     background-color: transparent; /* Default to transparent */
     z-index: 1; /* Behind content, above background image */
-    transition: background-color 0.3s ease; /* Optional: transition if you change tint on hover */
+    transition: background-color 0.3s ease;
     border-radius: 8px; /* Match parent border-radius */
 }
-/* Apply dark tint ONLY if a background image IS LIKELY SET (nth-of-type for those with images) */
+
+/* Apply dark tint ONLY if a background image IS SET on the element */
+/* This requires knowing which ones have images. We'll use the nth-of-type for now. */
 #setup-details .setup-category:nth-of-type(1)::before, /* Desktop */
 #setup-details .setup-category:nth-of-type(2)::before, /* Mice */
 #setup-details .setup-category:nth-of-type(3)::before, /* Keyboards */
 #setup-details .setup-category:nth-of-type(4)::before, /* Audio */
 #setup-details .setup-category:nth-of-type(6)::before  /* Laptop */ {
-    background-color: rgba(0, 0, 0, 0.45); /* ADJUSTED TINT to be lighter */
+    /* Apply tint only if these sections actually have a background-image via the rules above */
+    /* If background-image is none, this tint won't be very effective over a solid color */
+    background-color: rgba(0, 0, 0, 0.45); /* Subtle tint for sections with images */
 }
-/* For sections without images (5 and 7), the ::before will remain transparent,
-   showing the .setup-category background-color of #1F1F1F. */
 
 
 /* Ensure all direct children content is above the tint */
-/* Also target the intro paragraph if it's directly inside #setup-details */
-#setup-details > .section-title-wrapper, /* Ensure title wrapper is above */
-#setup-details > p:first-of-type, /* For the intro paragraph */
+#setup-details > .section-title-wrapper,
+#setup-details > p:first-of-type,
 .setup-category > h3,
 .setup-category > .setup-image-placeholder,
 .setup-category > .spec-list,
