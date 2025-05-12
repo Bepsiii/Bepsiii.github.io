@@ -242,7 +242,7 @@ footer {
   max-width: 900px; /* Default max-width */
   margin: 3rem auto;
   animation: fadeInSection 1s ease-out forwards;
-  background-color: #121212;
+  background-color: #121212; /* Default dark grey box background */
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.25);
   border-top: 3px solid #007bff; /* Blue accent top border */
@@ -786,29 +786,28 @@ body:has(#ascent-wip-page) footer {
 /* Setup Page (#setup-details)
    -------------------------------------------------------------------------- */
 #setup-details {
-    /* Overriding base .content-section styles for this page */
-    padding: 0; /* Remove padding as it's applied to categories */
-    background-color: transparent; /* Make base section transparent */
-    border-top: none;
-    box-shadow: none;
-    animation: none; /* Ensure no fade-in animation on the container itself */
+    /* This section will inherit styles from .content-section by default */
+    /* We removed the specific overrides that made it transparent and padding-less */
+    /* So it should now have the standard grey box background and padding */
+    animation: fadeInSection 1s ease-out forwards; /* Ensure animation is applied if removed before */
 }
 
 .setup-category {
     position: relative; /* Needed for the ::before overlay */
     overflow: hidden; /* Contain the overlay */
-    margin-bottom: 3rem; /* Space between categories */
-    padding: 3rem 2rem; /* Padding inside the category for content spacing */
+    margin-bottom: 2rem; /* Space between categories, reduced from 3rem */
+    padding: 2rem 1.5rem; /* Padding inside the category for content spacing */
     border-radius: 8px; /* Rounded corners for the category block */
-    background-color: #1a1a1a; /* Fallback background for sections without specific images */
+    background-color: #1a1a1a; /* Fallback background for sections */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-bottom: none; /* Remove separator line, using backgrounds now */
+    /* Removed border-bottom: none; as it's not needed if categories are distinct blocks */
     text-align: center; /* Center inline-block children like h3 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Add a subtle shadow to each category */
 }
 .setup-category:last-child {
-    margin-bottom: 1rem; /* Reduce margin for the last item */
+    margin-bottom: 0; /* Remove bottom margin from the last category inside #setup-details */
 }
 
 /* --- Background Images for Setup Categories --- */
@@ -829,14 +828,16 @@ body:has(#ascent-wip-page) footer {
 }
 /* Section 5: Monitors & Other Gear - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(5) {
-  background-image: none; /* Explicitly remove background */
+  background-image: none;
+  background-color: #222; /* Slightly different fallback if no image */
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
   background-image: url('/images/setup/laptop_bg.jpg');
 }
 /* Section 7: Server - NO BACKGROUND IMAGE */
 #setup-details .setup-category:nth-of-type(7) {
-  background-image: none; /* Explicitly remove background */
+  background-image: none;
+  background-color: #222; /* Slightly different fallback if no image */
 }
 
 
@@ -862,6 +863,7 @@ body:has(#ascent-wip-page) footer {
 
 /* Ensure all direct children content is above the tint */
 /* Also target the intro paragraph if it's directly inside #setup-details */
+#setup-details > .section-title-wrapper, /* Ensure title wrapper is above */
 #setup-details > p:first-of-type, /* For the intro paragraph */
 .setup-category > h3,
 .setup-category > .setup-image-placeholder,
