@@ -813,28 +813,31 @@ body:has(#ascent-wip-page) footer {
 
 /* --- Add Background Images Here --- */
 /* IMPORTANT: Replace these example URLs with paths to YOUR actual images! */
-/* Follow the structure: /images/setup/sectionX.jpg */
+/* Follow the structure: /images/setup/your-image-name.jpg */
 /* The order here MUST match the order of .setup-category divs in setup.html */
+
 #setup-details .setup-category:nth-of-type(1) { /* Desktop Specifications */
-  background-image: url('/images/setup/section1.jpg'); /* Image for Desktop */
+  background-image: url('/images/setup/desktop_bg.jpg');
 }
 #setup-details .setup-category:nth-of-type(2) { /* Mice & Mousepads */
-  background-image: url('/images/setup/section2.jpg'); /* Image for Mice & Mousepads */
+  background-image: url('/images/setup/mice_mousepads_bg.jpg');
 }
 #setup-details .setup-category:nth-of-type(3) { /* Keyboards */
-  background-image: url('/images/setup/section3.jpg'); /* Image for Keyboards */
+  background-image: url('/images/setup/keyboards_bg.jpg');
 }
 #setup-details .setup-category:nth-of-type(4) { /* Audio Setup */
-  background-image: url('/images/setup/section4.jpg'); /* Image for Audio */
+  background-image: url('/images/setup/audio_bg.jpg');
 }
-#setup-details .setup-category:nth-of-type(5) { /* Monitors & Other Gear */
-  background-image: url('/images/setup/section5.jpg'); /* Image for Monitors/Other */
+/* Section 5: Monitors & Other Gear - NO BACKGROUND IMAGE */
+#setup-details .setup-category:nth-of-type(5) {
+  background-image: none;
 }
 #setup-details .setup-category:nth-of-type(6) { /* Laptop */
-  background-image: url('/images/setup/section6.jpg'); /* Image for Laptop */
+  background-image: url('/images/setup/laptop_bg.jpg');
 }
-#setup-details .setup-category:nth-of-type(7) { /* Server */
-  background-image: url('/images/setup/section7.jpg'); /* Image for Server */
+/* Section 7: Server - NO BACKGROUND IMAGE */
+#setup-details .setup-category:nth-of-type(7) {
+  background-image: none;
 }
 
 
@@ -851,6 +854,12 @@ body:has(#ascent-wip-page) footer {
     transition: background-color 0.3s ease; /* Optional: transition if you change tint on hover */
     border-radius: 8px; /* Match parent border-radius */
 }
+/* Remove tint for sections without background images */
+#setup-details .setup-category:nth-of-type(5)::before,
+#setup-details .setup-category:nth-of-type(7)::before {
+    background-color: transparent; /* Make overlay transparent */
+}
+
 
 /* Ensure all direct children content is above the tint */
 /* Also target the intro paragraph if it's directly inside #setup-details */
