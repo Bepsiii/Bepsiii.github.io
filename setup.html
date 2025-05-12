@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Setup - Bepsi</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -59,12 +59,12 @@
             <div class="section-title-wrapper">
                 <h2>The Gear Behind the Scenes</h2>
             </div>
-            <p style="text-align: center; margin-bottom: 2.5rem;">Here's a breakdown of the hardware I currently use for gaming, productivity, projects, and hosting.</p>
+            <p style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 2;"> Here's a breakdown of the hardware I currently use for gaming, productivity, projects, and hosting.
+            </p>
 
-            <div class="setup-category">
-                <h3><i class="fas fa-desktop"></i> Desktop Specifications</h3>
+            <div class="setup-category"> <h3><i class="fas fa-desktop"></i> Desktop Specifications</h3>
                 <div class="setup-image-placeholder">
-                    [ Placeholder for Desktop Image ]
+                    [ Placeholder for Desktop Image - Optional Inline Image ]
                 </div>
                 <dl class="spec-list">
                     <dt>CPU:</dt> <dd>Intel Core i7 12700KF</dd>
@@ -78,10 +78,9 @@
                 </dl>
             </div>
 
-            <div class="setup-category">
-                <h3><i class="fas fa-computer-mouse"></i> Mice & Mousepads</h3>
+            <div class="setup-category"> <h3><i class="fas fa-computer-mouse"></i> Mice & Mousepads</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Mice/Mousepads Image ]
+                    [ Placeholder for Mice/Mousepads Image - Optional Inline Image ]
                 </div>
                 <div class="setup-subsection">
                     <h4>Mice</h4>
@@ -104,23 +103,63 @@
                 </div>
             </div>
 
-            <div class="setup-category">
-                <h3><i class="fas fa-keyboard"></i> Keyboards</h3>
+            <div class="setup-category"> <h3><i class="fas fa-keyboard"></i> Keyboards</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Keyboards Image ]
+                    [ Placeholder for Keyboards Image - Optional Inline Image ]
                 </div>
-                <ul class="item-list detailed-list">
-                    <li><strong>ENVKB 65m:</strong> Kang White V2 (Lubed 206g0), TX Stabs, Alfei WOB Cherry ABS Keycaps, Raspberry Pi Pico</li>
-                    <li><strong>ENVKB MCRO:</strong> Gateron Milky Reds (Lubed 206g0), Alfei WOB Cherry ABS Keycaps, Raspberry Pi Pico</li>
-                    <li><strong>Tester68:</strong> Ajazz Banana Switches, RK Stabilisers, GMK Cyan Keycaps, Gummy O-Ring Mount, Tape Mod</li>
-                    <li><strong>"BumAss Sayo":</strong> Sayodevice K64H3 PCB, Wuque Studio Flux HE Switches, FR4 Plate, RK Stabs, Tofu60 Silver Case, GMK Pixel Keycaps</li>
-                </ul>
-            </div>
-
-            <div class="setup-category">
-                <h3><i class="fas fa-headphones"></i> Audio Setup</h3>
+                <div class="keyboard-accordion">
+                    <div class="keyboard-item">
+                        <button class="keyboard-trigger" aria-expanded="false" aria-controls="kb1-details">
+                            ENVKB 65m
+                            <span class="accordion-icon" aria-hidden="true"></span>
+                        </button>
+                        <div id="kb1-details" class="keyboard-details" role="region">
+                            <p><strong>Switches:</strong> Kang White V2 (Lubed with 206g0)</p>
+                            <p><strong>Stabilizers:</strong> TX Stabs</p>
+                            <p><strong>Keycaps:</strong> Alfei WOB Cherry Profile ABS</p>
+                            <p><strong>Controller:</strong> Powered by a Raspberry Pi Pico!</p>
+                        </div>
+                    </div>
+                    <div class="keyboard-item">
+                        <button class="keyboard-trigger" aria-expanded="false" aria-controls="kb2-details">
+                            ENVKB MCRO
+                            <span class="accordion-icon" aria-hidden="true"></span>
+                        </button>
+                        <div id="kb2-details" class="keyboard-details" role="region">
+                            <p><strong>Switches:</strong> Gateron Milky Reds (Lubed with 206g0)</p>
+                            <p><strong>Keycaps:</strong> Alfei WOB Cherry Profile keycaps</p>
+                            <p><strong>Controller:</strong> Powered by a Raspberry Pi Pico!</p>
+                        </div>
+                    </div>
+                    <div class="keyboard-item">
+                        <button class="keyboard-trigger" aria-expanded="false" aria-controls="kb3-details">
+                            Tester68
+                            <span class="accordion-icon" aria-hidden="true"></span>
+                        </button>
+                        <div id="kb3-details" class="keyboard-details" role="region">
+                            <p><strong>Switches:</strong> Ajazz Banana Switches</p>
+                            <p><strong>Stabilizers:</strong> RK Stabilisers</p>
+                            <p><strong>Keycaps:</strong> GMK Cyan Keycaps</p>
+                            <p><strong>Mods:</strong> Gummy O-Ring mounted, Tape modded PCB</p>
+                        </div>
+                    </div>
+                    <div class="keyboard-item">
+                        <button class="keyboard-trigger" aria-expanded="false" aria-controls="kb4-details">
+                            "BumAss Sayo"
+                            <span class="accordion-icon" aria-hidden="true"></span>
+                        </button>
+                        <div id="kb4-details" class="keyboard-details" role="region">
+                            <p><strong>PCB:</strong> Sayodevice K64H3</p>
+                            <p><strong>Switches:</strong> Wuque Studio Flux HE</p>
+                            <p><strong>Plate:</strong> FR4 Plate</p>
+                            <p><strong>Stabilizers:</strong> RK Stabs</p>
+                            <p><strong>Case:</strong> Tofu60 Silver</p>
+                            <p><strong>Keycaps:</strong> GMK Pixel</p>
+                        </div>
+                    </div>
+                </div> </div> <div class="setup-category"> <h3><i class="fas fa-headphones"></i> Audio Setup</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Audio Gear Image ]
+                    [ Placeholder for Audio Gear Image - Optional Inline Image ]
                 </div>
                 <div class="setup-subsection">
                     <h4>Headphones</h4>
@@ -152,10 +191,9 @@
                 </div>
             </div>
 
-             <div class="setup-category">
-                <h3><i class="fas fa-desktop"></i> Monitors & Other Gear</h3>
+             <div class="setup-category"> <h3><i class="fas fa-tv"></i> Monitors & Other Gear</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Monitors/Other Gear Image ]
+                    [ Placeholder for Monitors/Other Gear Image - Optional Inline Image ]
                 </div>
                  <div class="setup-subsection">
                     <h4>Monitors</h4>
@@ -178,10 +216,9 @@
                 </div>
             </div>
 
-            <div class="setup-category">
-                <h3><i class="fas fa-laptop"></i> Laptop (Lenovo Yoga Pro 7)</h3>
+            <div class="setup-category"> <h3><i class="fas fa-laptop"></i> Laptop (Lenovo Yoga Pro 7)</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Laptop Image ]
+                    [ Placeholder for Laptop Image - Optional Inline Image ]
                 </div>
                 <dl class="spec-list">
                     <dt>Model:</dt> <dd>2023 Lenovo Yoga Pro 7 (14IRH8)</dd>
@@ -194,10 +231,9 @@
                 </dl>
             </div>
 
-             <div class="setup-category">
-                <h3><i class="fas fa-server"></i> Server (Dell Optiplex)</h3>
+             <div class="setup-category"> <h3><i class="fas fa-server"></i> Server (Dell Optiplex)</h3>
                  <div class="setup-image-placeholder">
-                    [ Placeholder for Server Image ]
+                    [ Placeholder for Server Image - Optional Inline Image ]
                 </div>
                 <dl class="spec-list">
                     <dt>Model:</dt> <dd>Dell Optiplex (Likely 3040/5040/7040 SFF based on CPU)</dd>
@@ -209,8 +245,7 @@
                 </dl>
             </div>
 
-        </section>
-    </main>
+        </section> </main>
 
     <footer>
         <p>&copy; <span id="currentYear"></span> Bepsi. All Rights Reserved.</p>
@@ -221,5 +256,52 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionTriggers = document.querySelectorAll('.keyboard-trigger');
+
+            if (accordionTriggers.length > 0) {
+                accordionTriggers.forEach(trigger => {
+                    // Set initial state based on aria-expanded
+                    const initialDetails = trigger.nextElementSibling;
+                    const isInitiallyExpanded = trigger.getAttribute('aria-expanded') === 'true';
+                    if (initialDetails) { // Check if details element exists
+                       initialDetails.style.maxHeight = isInitiallyExpanded ? initialDetails.scrollHeight + 'px' : null;
+                       if(isInitiallyExpanded) {
+                           initialDetails.classList.add('active');
+                           trigger.classList.add('active');
+                       }
+                    }
+
+
+                    trigger.addEventListener('click', function() {
+                        const details = this.nextElementSibling; // Get the .keyboard-details div
+                        if (!details) return; // Exit if details element doesn't exist
+
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                        // Toggle the current item
+                        this.setAttribute('aria-expanded', !isExpanded);
+                        details.style.maxHeight = isExpanded ? null : details.scrollHeight + 'px';
+                        details.classList.toggle('active');
+                        this.classList.toggle('active'); // Toggle active class on button too
+
+                        // Optional: Close other items (Uncomment if desired)
+                        // accordionTriggers.forEach(otherTrigger => {
+                        //     if (otherTrigger !== this) {
+                        //         const otherDetails = otherTrigger.nextElementSibling;
+                        //         if (otherDetails) {
+                        //             otherTrigger.setAttribute('aria-expanded', 'false');
+                        //             otherDetails.style.maxHeight = null;
+                        //             otherDetails.classList.remove('active');
+                        //             otherTrigger.classList.remove('active');
+                        //         }
+                        //     }
+                        // });
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
