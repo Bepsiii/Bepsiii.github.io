@@ -921,6 +921,162 @@ body:has(#ascent-wip-page) footer {
 .store-links-list li a.inline-link:hover {
     text-decoration: underline; /* Underline on hover for better UX */
 } 
+/* Add/Update these styles in your existing style.css file */
+
+/* ==========================================================================
+   5. Page-Specific Styles (Continued)
+   ========================================================================== */
+
+/* ... other page styles ... */
+
+/* Setup Page (#setup-details)
+   -------------------------------------------------------------------------- */
+#setup-details {
+    /* Uses .content-section base styles, but we might override padding below */
+}
+
+.setup-category {
+    position: relative; /* Needed for the ::before overlay */
+    overflow: hidden; /* Contain the overlay */
+    margin-bottom: 3rem;
+    padding: 3rem 2rem; /* Add padding inside the category for content spacing */
+    border-radius: 8px; /* Add rounded corners to the category block */
+    background-color: #1a1a1a; /* Fallback background */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Remove the bottom border, separation is now visual */
+    border-bottom: none;
+}
+.setup-category:last-child {
+    margin-bottom: 1rem;
+}
+
+/* --- Add Background Images Here --- */
+/* Add specific background images for each category. Use unique IDs or nth-of-type */
+/* Example:
+#setup-details .setup-category:nth-of-type(1) { /* Desktop */
+/* background-image: url('images/desktop_setup_bg.jpg'); */
+/* } */
+/* #setup-details .setup-category:nth-of-type(2) { /* Mice */
+/* background-image: url('images/mice_setup_bg.jpg'); */
+/* } */
+/* etc. */
+
+
+/* Tint Overlay for Background Images */
+.setup-category::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Adjust darkness (0.65 = 65% black) */
+    z-index: 1; /* Behind content, above background image */
+    transition: background-color 0.3s ease; /* Optional: transition if you change tint on hover */
+}
+/* Optional: Slightly lighten tint on hover */
+/* .setup-category:hover::before {
+    background-color: rgba(0, 0, 0, 0.55);
+} */
+
+
+/* Ensure all direct children content is above the tint */
+.setup-category > h3,
+.setup-category > .setup-image-placeholder,
+.setup-category > .spec-list,
+.setup-category > .item-list,
+.setup-category > .setup-subsection {
+    position: relative;
+    z-index: 2; /* Above the ::before tint */
+}
+
+/* Adjust heading style for better contrast */
+.setup-category h3 {
+    font-size: 1.9rem;
+    color: #ffffff; /* Ensure white for contrast */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #007bff;
+    display: inline-block;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Add subtle shadow for readability */
+}
+.setup-category h3 .fas {
+    margin-right: 0.75rem;
+    color: #00bfff;
+    font-size: 0.9em;
+}
+
+/* Adjust subsection heading style */
+.setup-subsection h4 {
+    font-size: 1.4rem;
+    color: #00bfff; /* Keep accent color */
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Adjust list/spec text colors for contrast if needed */
+.spec-list dt {
+    color: #e5e5e5; /* Slightly brighter label */
+    /* width, display, etc. remain the same */
+}
+.spec-list dd {
+    color: #c0c0c0; /* Ensure value is readable */
+     /* width, display, etc. remain the same */
+}
+.item-list li {
+    color: #c8c8c8; /* Ensure item text is readable */
+}
+.item-list li::before {
+     color: #007bff; /* Ensure bullet is visible */
+}
+.detailed-list li strong {
+    color: #f0f0f0; /* Brighter strong text */
+}
+
+/* Image Placeholder Styling - Make it blend better or remove if redundant */
+.setup-image-placeholder {
+    border: 2px dashed rgba(255, 255, 255, 0.2); /* Lighter dash */
+    padding: 3rem 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4); /* Lighter placeholder text */
+    font-style: italic;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    background-color: rgba(255, 255, 255, 0.03); /* Even more subtle background */
+    position: relative; /* Ensure it's above the tint */
+    z-index: 2;
+}
+
+
+/* ==========================================================================
+   7. Responsive Styles (@media queries) - Updates for Setup Page Backgrounds
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Setup Page */
+    .setup-category {
+        padding: 2rem 1.5rem; /* Adjust padding */
+    }
+    .setup-category h3 {
+        font-size: 1.6rem;
+    }
+    /* ... other existing responsive rules for setup page ... */
+}
+
+@media (max-width: 480px) {
+    /* Setup Page */
+     .setup-category {
+        padding: 1.5rem 1rem; /* Adjust padding */
+    }
+    /* ... other existing responsive rules for setup page ... */
+}
+
+/* ... rest of your CSS ... */
 
 /* ==========================================================================
    End of CSS
