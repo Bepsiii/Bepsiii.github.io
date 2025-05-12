@@ -787,7 +787,6 @@ body:has(#ascent-wip-page) footer {
    -------------------------------------------------------------------------- */
 #setup-details {
     /* This section will inherit styles from .content-section by default */
-    /* It should now have the standard grey box background and padding */
     animation: fadeInSection 1s ease-out forwards; /* Ensure animation is applied */
     padding: 3rem 2rem; /* Standard .content-section padding */
     background-color: #121212; /* Standard .content-section background */
