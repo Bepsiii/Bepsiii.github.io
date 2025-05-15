@@ -1300,6 +1300,338 @@ body:has(#ascent-wip-page) footer {
   }
 }
 
+/* Add to your existing style.css file */
+
+/* ==========================================================================
+   5. Page-Specific Styles (Continued)
+   ========================================================================== */
+
+/* ... other page styles ... */
+
+/* Articles Page (#articles-listing)
+   -------------------------------------------------------------------------- */
+#articles-listing {
+    /* Uses .content-section base styles */
+}
+
+.article-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem; /* Space between article cards */
+    margin-top: 2rem;
+}
+
+.article-item-card {
+    background-color: #1F1F1F; /* Slightly lighter than main content section */
+    border-radius: 8px;
+    overflow: hidden; /* To contain the thumbnail's rounded corners if any */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Ensure the link inside takes full card height */
+    flex-direction: column;
+}
+
+.article-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+}
+
+.article-card-link {
+    text-decoration: none;
+    color: inherit; /* Inherit text color from parent */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make link fill the card */
+}
+
+.article-thumbnail {
+    width: 100%;
+    height: 180px; /* Fixed height for thumbnails */
+    overflow: hidden; /* Crop images that are too large */
+    background-color: #2a2a2a; /* Fallback for missing images */
+}
+
+.article-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.article-item-card:hover .article-thumbnail img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.article-card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Allow content to take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes date to the bottom */
+}
+
+.article-card-title {
+    font-size: 1.4rem;
+    color: #00bfff; /* Accent color for titles - same as reviews for consistency */
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.article-card-excerpt {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Allow excerpt to take space before date */
+}
+
+.article-card-date {
+    font-size: 0.85rem;
+    color: #777;
+    text-align: right;
+    margin-top: auto; /* Pushes date to the bottom */
+}
+
+/* Add to your existing style.css file */
+
+/* ==========================================================================
+   5. Page-Specific Styles (Continued)
+   ========================================================================== */
+
+/* ... other page styles ... */
+
+/* Gallery Page (#gallery-main)
+   -------------------------------------------------------------------------- */
+#gallery-main {
+    /* Uses .content-section base styles */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1rem; /* Space between gallery items */
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden; /* To make image cover and for hover effects */
+    border-radius: 8px; /* Rounded corners for items */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    aspect-ratio: 1 / 1; /* Make items square, adjust as needed (e.g., 16/9) */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+.gallery-item .image-caption { /* Optional caption on hover */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-sizing: border-box;
+}
+
+.gallery-item:hover .image-caption {
+    opacity: 1;
+}
+
+
+/* Lightbox Styles
+   -------------------------------------------------------------------------- */
+.lightbox-overlay {
+    position: fixed;
+    z-index: 10000; /* High z-index to be on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black with opacity */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 85vh;
+    animation: lightboxZoom 0.6s ease-out;
+    border-radius: 4px;
+}
+
+@keyframes lightboxZoom {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+#lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    height: 50px; /* Reserve space */
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px; /* Adjust to vertically center with image */
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+    background-color: rgba(0,0,0,0.3);
+}
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.lightbox-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.lightbox-prev {
+    left: 0;
+}
+
+
+/* ... other styles ... */
+/* Add to your existing style.css file */
+
+/* ==========================================================================
+   5. Page-Specific Styles (Continued)
+   ========================================================================== */
+
+/* ... other page styles ... */
+
+/* Spreadsheets/Resources Page (#spreadsheets-listing)
+   -------------------------------------------------------------------------- */
+#spreadsheets-listing {
+    /* Uses .content-section base styles */
+}
+
+.resource-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+    gap: 2rem; /* Space between resource cards */
+    margin-top: 2rem;
+}
+
+.resource-item-card {
+    background-color: #1F1F1F; /* Slightly lighter than main content section */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Stack icon and content vertically */
+    padding: 1.5rem;
+    text-align: center; /* Center icon and button */
+}
+
+.resource-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+}
+
+.resource-card-icon {
+    margin-bottom: 1.5rem;
+    color: #00bfff; /* Accent color for icons */
+}
+
+.resource-card-icon .fas { /* For Font Awesome icons */
+    font-size: 3rem; /* Larger icon size */
+}
+
+.resource-card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-card-title {
+    font-size: 1.5rem;
+    color: #ffffff; /* White title for better contrast on dark card */
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.resource-card-description {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Allow description to take space before button */
+}
+
+.resource-button {
+    margin-top: auto; /* Pushes button to the bottom of the card */
+    align-self: center; /* Center button within the card */
+    padding: 0.7rem 1.5rem; /* Slightly smaller button */
+}
+.resource-button .fas {
+    margin-left: 0.5rem;
+    font-size: 0.9em;
+}
+
+/* ... other styles ... */
+
+
+
 /* ==========================================================================
    End of CSS
    ========================================================================== */
